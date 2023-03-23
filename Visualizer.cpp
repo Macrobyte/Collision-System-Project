@@ -3,6 +3,9 @@
 
 SDL_Window* Visualizer::_window = nullptr;
 SDL_Renderer* Visualizer::_renderer = nullptr;
+int Visualizer::_width = 0;
+int Visualizer::_height = 0;
+SDL_Rect Visualizer::_viewport = SDL_Rect();
 bool Visualizer::_isRunning = false;
 std::vector<Shape*> Visualizer::_shapes = std::vector<Shape*>();
 
@@ -27,6 +30,9 @@ bool Visualizer::Initialize(const char* title, int x, int y, int width, int heig
         CUtils::LogError("Failed to initialize SDL. Error: ", SDL_GetError());
     }
     
+	SDL_GetWindowSize(_window, &_width, &_height);
+	SDL_RenderGetViewport(_renderer, &_viewport);
+
 	CUtils::LogColor("Visualizer initialized.", CUtils::GREEN);
 
 	return _isRunning = true;   		
@@ -56,6 +62,7 @@ void Visualizer::Render()
 	for (std::vector<Shape*>::size_type i = 0; i != _shapes.size(); i++)
 	{
 		_shapes[i]->Draw(_renderer);
+		_shapes[i]->SetColor({CUtils::GetRandomNumber(1,255),CUtils::GetRandomNumber(1,255),CUtils::GetRandomNumber(1,255) });
 	}
 
 	SDL_RenderPresent(_renderer);

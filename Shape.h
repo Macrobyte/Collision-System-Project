@@ -10,6 +10,8 @@ struct RGB
     int r;
     int g;
     int b;
+    
+    
 };
 
 class Shape
@@ -25,15 +27,16 @@ public:
     void SetSize(const Vector2& size) { _size = size; }
 
 	RGB GetColor() const { return _color; }
-	void SetColor(const RGB& color) { _color = color; }
+	void SetColor(RGB color) { _color = color; }
 
     virtual void Draw(SDL_Renderer* renderer) = 0;
 private:
+	std::string _name;
     Vector2 _position;
     Vector2 _size;
 	RGB _color;
-	std::string _name;
 
+    
     
 };
 

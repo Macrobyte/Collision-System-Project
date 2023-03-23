@@ -4,7 +4,7 @@
 #include <sstream>
 #include <Windows.h>
 #include <conio.h>
-
+#include <random>
 
 
 namespace CUtils
@@ -132,6 +132,20 @@ namespace CUtils
 	{
 		COORD coord = { x , y };
 		SetConsoleCursorPosition(hOut, coord);
+	}
+
+	/// <summary>
+	/// Returns a random number between the min and max values.
+	/// </summary>
+	/// <param name="min"></param>
+	/// <param name="max"></param>
+	/// <returns></returns>
+	static int GetRandomNumber(int min, int max)
+	{
+		std::random_device rd;
+		std::mt19937 mt(rd());
+		std::uniform_int_distribution<int> dist(min, max);
+		return dist(mt);
 	}
 
 }

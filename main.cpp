@@ -1,31 +1,22 @@
 #include <SDL.h>
-#include <iostream>
-#include "Vector2.h"
-#include "ConsoleUtilities.h"
-
-using namespace CUtils;
+#include "Visualizer.h"
+#include "Square.h"
 
 int main(int argc, char* argv[])
 {
-	SDL_Init(SDL_INIT_VIDEO);
 
-	SDL_Window* window;
-
-	window = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
-
-	if (window == nullptr)
+	Visualizer::AddShape(new Square(Vector2(100, 100), Vector2(100, 100), RGB(255, 255, 0)));
+	
+	if (Visualizer::Initialize("Collision System Demo", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false))
 	{
-		SDL_Log("Could not create window: %s", SDL_GetError());
-		return 1;
+		while (Visualizer::IsRunning())
+		{
+			Visualizer::HandleEvents();
+			Visualizer::Render();
+		}
 	}
 
-	LogWarning("This is a warning message.");
-
-	SDL_Delay(3000);
-
-	SDL_DestroyWindow(window);
-
-	SDL_Quit();
-
+	Visualizer::Clean();
+	
 	return 0;
 }

@@ -5,35 +5,33 @@
 #include <Windows.h>
 #include <conio.h>
 
-enum TextColors
-{
-	BLACK = 0,
-	DARK_BLUE = 1,
-	DARK_GREEN = 2,
-	DARK_CYAN = 3,
-	DARK_RED = 4,
-	DARK_MAGENTA = 5,
-	DARK_YELLOW = 6,
-	DARK_WHITE = 7,
-	GRAY = 8,
-	BLUE = 9,
-	GREEN = 10,
-	CYAN = 11,
-	RED = 12,
-	MAGENTA = 13,
-	YELLOW = 14,
-	WHITE = 15
-};
+
 
 namespace CUtils
 {
-	namespace Internal
+	const enum TextColors
 	{
-		HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-	}
+		BLACK = 0,
+		DARK_BLUE = 1,
+		DARK_GREEN = 2,
+		DARK_CYAN = 3,
+		DARK_RED = 4,
+		DARK_MAGENTA = 5,
+		DARK_YELLOW = 6,
+		DARK_WHITE = 7,
+		GRAY = 8,
+		BLUE = 9,
+		GREEN = 10,
+		CYAN = 11,
+		RED = 12,
+		MAGENTA = 13,
+		YELLOW = 14,
+		WHITE = 15
+	};
+
+	const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	
-	
-	void Log() 
+	static void Log()
     {
         std::cout << std::endl;
     }
@@ -47,7 +45,7 @@ namespace CUtils
     /// <param name="value"></param>
     /// <param name="...args"></param>
     template<typename T, typename... Args>
-    void Log(const T& value, const Args&... args) 
+	static void Log(const T& value, const Args&... args)
     {
         std::ostringstream ss;
         ss << value;
@@ -64,7 +62,7 @@ namespace CUtils
 	/// <param name="value"></param>
 	/// <param name="...args"></param>
 	template<typename T, typename... Args>
-	void LogError(const T& value, const Args&... args)
+	static void LogError(const T& value, const Args&... args)
 	{
 		std::ostringstream ss;
 		ss << "\033[1;31m" << value << "\033[0m"; 
@@ -81,7 +79,7 @@ namespace CUtils
 	/// <param name="value"></param>
 	/// <param name="...args"></param>
 	template<typename T, typename... Args>
-	void LogWarning(const T& value, const Args&... args)
+	static void LogWarning(const T& value, const Args&... args)
 	{
 		std::ostringstream ss;
 		ss << "\033[1;33m" << value << "\033[0m";
@@ -97,32 +95,32 @@ namespace CUtils
 	/// </summary>
 	/// <param name="message"></param>
 	/// <param name="color"></param>
-	void LogColor(std::string message, int color)
+	static void LogColor(std::string message, int color)
 	{
-		SetConsoleTextAttribute(Internal::hOut, color);
+		SetConsoleTextAttribute(hOut, color);
 		std::cout << message << std::endl;
-		SetConsoleTextAttribute(Internal::hOut, WHITE);
+		SetConsoleTextAttribute(hOut, WHITE);
 	}
 
 	/// <summary>
 	/// Sets the output color of the console text.
 	/// </summary>
 	/// <param name="color"></param>
-	void SetColor(int color)
+	static void SetColor(int color)
 	{
-		SetConsoleTextAttribute(Internal::hOut, color);
+		SetConsoleTextAttribute(hOut, color);
 	}
 
 	/// <summary>
 	/// Clears the console screen.
 	/// </summary>
-	void ClearConsole()
+	static void ClearConsole()
 	{
 		CONSOLE_SCREEN_BUFFER_INFO info;
-		GetConsoleScreenBufferInfo(Internal::hOut, &info);
+		GetConsoleScreenBufferInfo(hOut, &info);
 		DWORD d = info.srWindow.Bottom * info.srWindow.Right;
 		COORD coord = { 0,0 };
-		FillConsoleOutputCharacter(Internal::hOut, ' ', d, coord, &d);
+		FillConsoleOutputCharacter(hOut, ' ', d, coord, &d);
 	}
 
 	/// <summary>
@@ -130,10 +128,10 @@ namespace CUtils
 	/// </summary>
 	/// <param name="x"></param>
 	/// <param name="y"></param>
-	void SetCursor(short x, short y)
+	static void SetCursor(short x, short y)
 	{
 		COORD coord = { x , y };
-		SetConsoleCursorPosition(Internal::hOut, coord);
+		SetConsoleCursorPosition(hOut, coord);
 	}
 
 }

@@ -75,10 +75,15 @@ public:
         return Vector2(x / mag, y / mag);
     }
 
-    void normalize() {
-        float mag = magnitude();
-        x /= mag;
-        y /= mag;
+    Vector2 normalize() {
+		float mag = magnitude();
+		x /= mag;
+		y /= mag;
+		return *this;
+    }
+
+    Vector2 perp() const{
+        return Vector2(-y, x);
     }
 
     float distance(const Vector2& other) const {
@@ -92,6 +97,14 @@ public:
     Vector2 rotate(float angle) const {
         return Vector2(x * cos(angle) - y * sin(angle), x * sin(angle) + y * cos(angle));
     }
+
+	float dot(const Vector2& other) const {
+		return x * other.x + y * other.y;
+	}
+    
+	float length_squared() const {
+		return x * x + y * y;
+	}
 
 #pragma endregion
 

@@ -133,14 +133,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="CollisionHandler.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Square.cpp" />
+    <ClCompile Include="Pentagon.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="SAT.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Visualizer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ConsoleUtilities.h" />
+    <ClInclude Include="Circle.h" />
+    <ClInclude Include="CollisionHandler.h" />
+    <ClInclude Include="VUtils.h" />
+    <ClInclude Include="ICollidable.h" />
+    <ClInclude Include="Pentagon.h" />
+    <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="SAT.h" />
     <ClInclude Include="Shape.h" />
-    <ClInclude Include="Square.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Visualizer.h" />
   </ItemGroup>

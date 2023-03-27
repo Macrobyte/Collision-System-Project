@@ -1,7 +1,8 @@
 #pragma once
-#include "Vector2.h"
 #include <SDL.h>
 #include <string>
+#include <vector>
+#include "Vector2.h"
 
 struct RGB
 {
@@ -9,34 +10,52 @@ struct RGB
     RGB(int r, int g, int b) : r(r), g(g), b(b) {}
     int r;
     int g;
-    int b;
-    
-    
+    int b;    
+};
+
+enum ShapeType
+{
+    RECTANGLE,
+    CIRCLE,
+    PENTAGON
+};
+
+enum MoveDirection
+{
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT
 };
 
 class Shape
 {
 public:
-    Shape(std::string name, Vector2 position, Vector2 size, RGB color) : _name(name), _position(position), _size(size), _color(color) {}
+    Shape(ShapeType type, Vector2 position, RGB color, std::string name, MoveDirection direction) : _type(type), _position(position), _color(color), _name(name), _moveDirection(direction) {}
     virtual ~Shape() {}
 
+	ShapeType GetType() const { return _type; }
+	
     Vector2 GetPosition() const { return _position; }
-    void SetPosition(const Vector2& position) { _position = position; }
-
-    Vector2 GetSize() const { return _size; }
-    void SetSize(const Vector2& size) { _size = size; }
+    void SetPosition(Vector2 position) { _position = position; }
 
 	RGB GetColor() const { return _color; }
-	void SetColor(RGB color) { _color = color; }
+	void SetColor(const RGB& color) { _color = color; }
 
+    std::string GetName() const { return _name; }
+
+	MoveDirection GetMoveDirection() const { return _moveDirection; }
+	void SetMoveDirection(MoveDirection direction) { _moveDirection = direction; }
+    
     virtual void Draw(SDL_Renderer* renderer) = 0;
+    virtual void Update(float deltaTime) = 0;
 private:
-	std::string _name;
+    ShapeType _type; 
     Vector2 _position;
-    Vector2 _size;
-	RGB _color;
-
+	RGB _color; 
+	std::string _name;
+    std::vector<Vector2> _vertices;
     
-    
+	MoveDirection _moveDirection;
 };
 

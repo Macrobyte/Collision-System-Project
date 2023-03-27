@@ -1,17 +1,14 @@
 #include "Visualizer.h"
-#include "ConsoleUtilities.h"
+#include "VUtils.h"
 
 SDL_Window* Visualizer::_window = nullptr;
 SDL_Renderer* Visualizer::_renderer = nullptr;
-int Visualizer::_width = 0;
-int Visualizer::_height = 0;
-SDL_Rect Visualizer::_viewport = SDL_Rect();
 bool Visualizer::_isRunning = false;
 std::vector<Shape*> Visualizer::_shapes = std::vector<Shape*>();
 
 bool Visualizer::Initialize(const char* title, int x, int y, int width, int height, bool isFullscreen)
 {
-	CUtils::LogWarning("Initializing Visualizer...");
+	VUtils::LogWarning("Initializing Visualizer...");
 
     if (SDL_Init(SDL_INIT_EVERYTHING) >= 0)
     {
@@ -20,20 +17,17 @@ bool Visualizer::Initialize(const char* title, int x, int y, int width, int heig
 			flag = SDL_WINDOW_FULLSCREEN;
         
 		if (!(_window = SDL_CreateWindow(title, x, y, width, height, flag)))
-			CUtils::LogError("Failed to create Window. Error: ", SDL_GetError());
+			VUtils::LogError("Failed to create Window. Error: ", SDL_GetError());
         else
             if (!(_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED)))
-                CUtils::LogError("Failed to create Renderer. Error: ", SDL_GetError());
+                VUtils::LogError("Failed to create Renderer. Error: ", SDL_GetError());
     }
     else
     {
-        CUtils::LogError("Failed to initialize SDL. Error: ", SDL_GetError());
-    }
-    
-	SDL_GetWindowSize(_window, &_width, &_height);
-	SDL_RenderGetViewport(_renderer, &_viewport);
+        VUtils::LogError("Failed to initialize SDL. Error: ", SDL_GetError());
+    }  
 
-	CUtils::LogColor("Visualizer initialized.", CUtils::GREEN);
+	VUtils::LogColor("Visualizer initialized.", VUtils::GREEN);
 
 	return _isRunning = true;   		
 }
@@ -56,23 +50,35 @@ void Visualizer::HandleEvents()
 
 void Visualizer::Render()
 {
-	SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
+	SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255); //Sets background color
+	
 	SDL_RenderClear(_renderer);
+	
 
-	for (std::vector<Shape*>::size_type i = 0; i != _shapes.size(); i++)
+	for (size_t i = 0; i < _shapes.size(); i++)
 	{
 		_shapes[i]->Draw(_renderer);
-		_shapes[i]->SetColor({CUtils::GetRandomNumber(1,255),CUtils::GetRandomNumber(1,255),CUtils::GetRandomNumber(1,255) });
 	}
 
 	SDL_RenderPresent(_renderer);
 }
 
+void Visualizer::Update(float deltaTime)
+{
+	for (size_t i = 0; i < _shapes.size(); i++)
+	{
+		_shapes[i]->Update(deltaTime);
+	}
+}
+
 void Visualizer::Clean()
 {
-	CUtils::LogWarning("Cleaning Visualizer...");
+	VUtils::LogWarning("Cleaning Visualizer...");
+	
 	SDL_DestroyWindow(_window);
+	
 	SDL_DestroyRenderer(_renderer);
+	
 	SDL_Quit();
 }
 
@@ -80,3 +86,4 @@ void Visualizer::AddShape(Shape* shape)
 {
 	_shapes.push_back(shape);
 }
+

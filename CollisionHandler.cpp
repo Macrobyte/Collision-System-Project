@@ -1,5 +1,4 @@
 #include "CollisionHandler.h"
-#include "Vector2.h"
 #include "SAT.h"
 
 std::vector<ICollidable*> CollisionHandler::_collidables = std::vector<ICollidable*>();

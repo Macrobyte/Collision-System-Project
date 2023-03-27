@@ -22,8 +22,7 @@ public:
 #pragma region Interface Methods
 	std::vector<Vector2> GetVertices() const override;
 	std::vector<Vector2> GetNormals() const override;
-	std::pair<float, float> ProjectOntoAxis(const Vector2& axis, float& min, float& max) const override;
-
+	
 	void OnCollision(const ICollidable& other) const override;
 	bool Collides(const ICollidable& other) const override;
 	

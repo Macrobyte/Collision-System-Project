@@ -38,18 +38,17 @@ void Pentagon::Update(float deltaTime)
 }
 #pragma endregion
 
-
-
+#pragma region ICollidable Interface Methods
 std::vector<Vector2> Pentagon::GetVertices() const
 {
-    std::vector<Vector2> vertices;
+	std::vector<Vector2> vertices;
 	const int numSide = 5;
 	const float angleIncrement = 2 * M_PI / numSide;
 	for (int i = 0; i < numSide; ++i) //++i
 	{
 		float angle = i * angleIncrement + M_PI / 2.0f;
-		Vector2 vertex = Vector2(GetPosition().x + _radius * cos(angle), 
-								 GetPosition().y + _radius * sin(angle));
+		Vector2 vertex = Vector2(GetPosition().x + _radius * cos(angle),
+			GetPosition().y + _radius * sin(angle));
 		vertices.push_back(vertex);
 	}
 	return vertices;
@@ -69,24 +68,6 @@ std::vector<Vector2> Pentagon::GetNormals() const
 	return normals;
 }
 
-std::pair<float, float> Pentagon::ProjectOntoAxis(const Vector2& axis, float& min, float& max) const
-{
-	std::vector<Vector2> vertices = GetVertices();
-	float projection = vertices[0].dot(axis);
-	min = projection;
-	max = projection;
-	for (int i = 1; i < vertices.size(); ++i)
-	{
-		projection = vertices[i].dot(axis);
-		if (projection < min)
-			min = projection;
-		else if (projection > max)
-			max = projection;
-	}
-
-	return std::make_pair(min, max);
-}
-
 void Pentagon::OnCollision(const ICollidable& other) const
 {
 	// Try to cast the other object to a Rectangle
@@ -99,18 +80,18 @@ void Pentagon::OnCollision(const ICollidable& other) const
 	// Try to cast the other object to a Circle
 	const Circle* circle = dynamic_cast<const Circle*>(&other);
 	if (circle != nullptr) {
-		
+
 		std::cout << this->GetName() << " collided with " << circle->GetName() << std::endl;
-		
+
 		return;
 	}
 
 	// Try to cast the other object to a Pentagon
 	const Pentagon* pentagon = dynamic_cast<const Pentagon*>(&other);
 	if (pentagon != nullptr) {
-		
-		std::cout << this->GetName() << " collided with " << pentagon->GetName() << std::endl;
-		
+
+		//std::cout << this->GetName() << " collided with " << pentagon->GetName() << std::endl;
+
 		return;
 	}
 }
@@ -119,3 +100,7 @@ bool Pentagon::Collides(const ICollidable& other) const
 {
 	return false;
 }
+#pragma endregion
+
+
+

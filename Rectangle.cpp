@@ -52,19 +52,6 @@ std::vector<Vector2> Rectangle::GetNormals() const
 	return normals;
 }
 
-std::pair<float, float> Rectangle::ProjectOntoAxis(const Vector2& axis, float& min, float& max) const
-{
-	std::vector<Vector2> vertices = GetVertices();
-	min = max = vertices[0].dot(axis);
-	for (int i = 1; i < vertices.size(); i++) {
-		float projection = vertices[i].dot(axis);
-		min = (std::min)(min, projection);
-		max = (std::max)(max, projection);
-	}
-
-	return std::make_pair(min, max);
-}
-
 void Rectangle::OnCollision(const ICollidable& other) const
 {
 	// Try to cast the other object to a Rectangle

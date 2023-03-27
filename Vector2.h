@@ -70,6 +70,10 @@ public:
         return sqrt(x * x + y * y);
     }
 
+    float magnitude_squared() const{
+        return x * x + y * y;     
+    }
+
     Vector2 normalized() const {
         float mag = magnitude();
         return Vector2(x / mag, y / mag);
@@ -100,10 +104,6 @@ public:
 
 	float dot(const Vector2& other) const {
 		return x * other.x + y * other.y;
-	}
-    
-	float length_squared() const {
-		return x * x + y * y;
 	}
 
 #pragma endregion

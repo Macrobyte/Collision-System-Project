@@ -1,6 +1,7 @@
 #include "Circle.h"
 #include "Rectangle.h"
 #include "Pentagon.h"
+#include <algorithm>
 
 #pragma region Shape Overrides
 void Circle::Draw(SDL_Renderer* renderer)
@@ -140,7 +141,6 @@ bool Circle::Collides(const ICollidable& other) const
 			// Calculate the distance between the center of the circle and the current edge
 			float distance = (center - projection).magnitude();
 
-			//std::cout << "Distance: " << distance << std::endl;
 
 			// If the distance is greater than the radius of the circle, the shapes do not collide
 			if (distance > _radius) {

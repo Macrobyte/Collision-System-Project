@@ -1,39 +1,30 @@
 #include <SDL.h>
 #include "Visualizer.h"
 #include "Timer.h"
-#include "Rectangle.h"
-#include "Pentagon.h"
 #include "Circle.h"
+#include "Polygon.h"
 #include "CollisionHandler.h"
+#include "PolygonFactory.h"
 
 const int WINDOW_WIDTH = 1280;
 const int WINDOW_HEIGHT = 720;
 
 int main(int argc, char* argv[])
 {
-	//Visualizer::AddShape(new Pentagon(Vector2(300, 400), 30, RGB(0, 255, 0), "Pentagon 1"));
-	//Visualizer::AddShape(new Circle(Vector2(100, 100), 50, RGB(255, 0, 0), "Circle 1"));
-	//Rectangle* rec1 = new Rectangle(Vector2(700, 400), Vector2(50, 50), RGB(255, 255, 255), "Square 1", DOWN);
-	//Rectangle* rec2 = new Rectangle(Vector2(640, 500), Vector2(50, 50), RGB(255, 255, 255), "Square 2", UP);
-	//Circle* circle1 = new Circle(Vector2(700, 400), 25, RGB(255, 0, 0), "Circle 1", RIGHT);
-	Circle* circle2 = new Circle(Vector2(200, 100), 50, RGB(255, 0, 0), "Circle 2", RIGHT);
+	Polygon* poly1 = new Polygon(Vector2(100, 100), RGB(255, 255, 255), "Poly 1", RIGHT, PolygonFactory::CreateSquare(200));
+	Polygon* poly2 = new Polygon(Vector2(500, 100), RGB(255, 255, 255), "Poly 2", LEFT, PolygonFactory::CreateSquare(200));
+	//Circle* circle1 = new Circle(Vector2(100, 100), 50, RGB(255, 255, 255), "Circle 1", RIGHT);
+	//Circle* circle2 = new Circle(Vector2(500, 100), 50, RGB(255, 255, 255), "Circle 2", LEFT);
 	
-	Pentagon* penta1 = new Pentagon(Vector2(450, 100), 50, RGB(0, 255, 0), "Pentagon 1", LEFT);
-
-	
-	//Visualizer::AddShape(rec1);
-	//Visualizer::AddShape(rec2);
+	Visualizer::AddShape(poly1);
+	Visualizer::AddShape(poly2);
 	//Visualizer::AddShape(circle1);
-	Visualizer::AddShape(circle2);
+	//Visualizer::AddShape(circle2);
 	
-	Visualizer::AddShape(penta1);
-	
-	
-	//CollisionHandler::AddCollidable(rec1);
-	//CollisionHandler::AddCollidable(rec2);
+	CollisionHandler::AddCollidable(poly1);
+	CollisionHandler::AddCollidable(poly2);
 	//CollisionHandler::AddCollidable(circle1);
-	CollisionHandler::AddCollidable(circle2);
-	CollisionHandler::AddCollidable(penta1);
+	//CollisionHandler::AddCollidable(circle2);
 
 	
 

@@ -105,6 +105,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)SDL2-2.26.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,6 +123,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)SDL2-2.26.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -137,6 +139,7 @@
     <ClCompile Include="CollisionHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pentagon.cpp" />
+    <ClCompile Include="Polygon.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="SAT.cpp" />
     <ClCompile Include="Timer.cpp" />
@@ -145,6 +148,10 @@
   <ItemGroup>
     <ClInclude Include="Circle.h" />
     <ClInclude Include="CollisionHandler.h" />
+    <ClInclude Include="ICircleCollidable.h" />
+    <ClInclude Include="IPolygonCollidable.h" />
+    <ClInclude Include="Polygon.h" />
+    <ClInclude Include="PolygonFactory.h" />
     <ClInclude Include="VUtils.h" />
     <ClInclude Include="ICollidable.h" />
     <ClInclude Include="Pentagon.h" />

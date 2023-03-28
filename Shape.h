@@ -13,13 +13,6 @@ struct RGB
     int b;    
 };
 
-enum ShapeType
-{
-    RECTANGLE,
-    CIRCLE,
-    PENTAGON
-};
-
 enum MoveDirection
 {
 	UP,
@@ -31,10 +24,8 @@ enum MoveDirection
 class Shape
 {
 public:
-    Shape(ShapeType type, Vector2 position, RGB color, std::string name, MoveDirection direction) : _type(type), _position(position), _color(color), _name(name), _moveDirection(direction) {}
+    Shape(Vector2 position, RGB color, std::string name, MoveDirection direction) : _position(position), _color(color), _name(name), _moveDirection(direction) {}
     virtual ~Shape() {}
-
-	ShapeType GetType() const { return _type; }
 	
     Vector2 GetPosition() const { return _position; }
     void SetPosition(Vector2 position) { _position = position; }
@@ -49,8 +40,7 @@ public:
     
     virtual void Draw(SDL_Renderer* renderer) = 0;
     virtual void Update(float deltaTime) = 0;
-private:
-    ShapeType _type; 
+private: 
     Vector2 _position;
 	RGB _color; 
 	std::string _name;

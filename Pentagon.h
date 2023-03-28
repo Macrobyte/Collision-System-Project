@@ -5,7 +5,7 @@
 class Pentagon : public Shape, public ICollidable
 {
 public:
-    Pentagon( Vector2 position, float radius, RGB color, std::string name, MoveDirection direction) : Shape(ShapeType::PENTAGON, position, color, name, direction), _radius(radius) {};
+    Pentagon( Vector2 position, float radius, RGB color, std::string name, MoveDirection direction) : Shape(position, color, name, direction), _radius(radius) {};
 	~Pentagon() {}
 	
 #pragma region Getters
@@ -20,11 +20,11 @@ public:
 #pragma endregion
 
 #pragma region Interface Methods
-	std::vector<Vector2> GetVertices() const override;
-	std::vector<Vector2> GetNormals() const override;
+	//std::vector<Vector2> GetVertices() const override;
+	//std::vector<Vector2> GetNormals() const override;
 	
-	void OnCollision(const ICollidable& other) const override;
-	bool Collides(const ICollidable& other) const override;
+	//void OnCollision(const ICollidable& other) const override;
+	//bool Collides(const ICollidable& other) const override;
 	
 #pragma endregion
 

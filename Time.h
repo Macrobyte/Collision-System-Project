@@ -1,11 +1,11 @@
 #pragma once
 #include <chrono>
 
-class Timer
+class Time
 {
 public:
     static void Initialize(float targetFrameTime);
-    static float GetElapsedTime();
+    static float DeltaTime();
     static void Sleep();
 	static int GetFPS();
 

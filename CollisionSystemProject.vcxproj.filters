@@ -5,98 +5,81 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Utilities">
       <UniqueIdentifier>{37b2a7c4-d170-42d6-adca-f54791fb6024}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utilities\Header Files">
-      <UniqueIdentifier>{6c3e6515-97c5-4b0a-bba0-5be0b45fc177}</UniqueIdentifier>
+    <Filter Include="Shapes">
+      <UniqueIdentifier>{8f736808-67db-4970-bc0e-f7c0ff7f9f4e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utilities\Source Files">
-      <UniqueIdentifier>{ece91ff9-501d-4f35-bb49-fb46ca3b5753}</UniqueIdentifier>
+    <Filter Include="Visualizer">
+      <UniqueIdentifier>{1f51de33-9607-4710-939e-c3b810e4d155}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{c5a49d32-5654-478e-9178-a60c7b6ff775}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Rectangle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Pentagon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Timer.cpp">
-      <Filter>Utilities\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Visualizer.cpp">
-      <Filter>Utilities\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Circle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SAT.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Shapes</Filter>
     </ClCompile>
     <ClCompile Include="Polygon.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualizer.cpp">
+      <Filter>Visualizer</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Visualizer</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionHandler.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="SAT.cpp">
+      <Filter>Collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Shape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rectangle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ICollidable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Pentagon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VUtils.h">
-      <Filter>Utilities\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualizer.h">
-      <Filter>Utilities\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Timer.h">
-      <Filter>Utilities\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>Utilities\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Circle.h">
-      <Filter>Header Files</Filter>
+      <Filter>Shapes</Filter>
     </ClInclude>
-    <ClInclude Include="SAT.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ICircleCollidable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IPolygonCollidable.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Shape.h">
+      <Filter>Shapes</Filter>
     </ClInclude>
     <ClInclude Include="Polygon.h">
-      <Filter>Header Files</Filter>
+      <Filter>Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualizer.h">
+      <Filter>Visualizer</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="VUtils.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Visualizer</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionHandler.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="ICircleCollidable.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="ICollidable.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="IPolygonCollidable.h">
+      <Filter>Collision</Filter>
     </ClInclude>
     <ClInclude Include="PolygonFactory.h">
-      <Filter>Header Files</Filter>
+      <Filter>Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="SAT.h">
+      <Filter>Collision</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

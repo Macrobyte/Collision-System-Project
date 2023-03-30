@@ -1,14 +1,14 @@
-#include "Timer.h"
+#include "Time.h"
 #include <thread>
 #include "VUtils.h"
 
-float Timer::_targetFrameTime = 0;
-std::chrono::high_resolution_clock::time_point Timer::_lastFrameTime = std::chrono::high_resolution_clock::now();
-int Timer::_frameCount = 0;
-int Timer::_fps = 0;
-std::chrono::high_resolution_clock::time_point Timer::_lastFPSTime = std::chrono::high_resolution_clock::now();
+float Time::_targetFrameTime = 0;
+std::chrono::high_resolution_clock::time_point Time::_lastFrameTime = std::chrono::high_resolution_clock::now();
+int Time::_frameCount = 0;
+int Time::_fps = 0;
+std::chrono::high_resolution_clock::time_point Time::_lastFPSTime = std::chrono::high_resolution_clock::now();
 
-void Timer::Initialize(float targetFrameTime)
+void Time::Initialize(float targetFrameTime)
 {
 	VUtils::LogWarning("Initializing Timer...");
 	
@@ -18,7 +18,7 @@ void Timer::Initialize(float targetFrameTime)
 	VUtils::LogColor("Timer initialized.", VUtils::GREEN);
 }
 
-float Timer::GetElapsedTime()
+float Time::DeltaTime()
 {
 	auto currentFrameTime = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<float> elapsed = currentFrameTime - _lastFrameTime;
@@ -26,20 +26,20 @@ float Timer::GetElapsedTime()
 	return elapsed.count();
 }
 
-void Timer::Sleep()
+void Time::Sleep()
 {
 	auto targetTime = _lastFrameTime + std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(_targetFrameTime));
 	std::this_thread::sleep_until(targetTime);	
 }
 
-int Timer::GetFPS()
+int Time::GetFPS()
 {
 	auto currentFrameTime = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<float> elapsed = currentFrameTime - _lastFPSTime;
 	_frameCount++;
 	if (elapsed.count() >= 1.0f)
 	{
-		_fps = static_cast<float>(_frameCount) / elapsed.count();
+		_fps = static_cast<float>(_frameCount) / (float)elapsed.count();
 		_frameCount = 0;
 		_lastFPSTime = currentFrameTime;
 	}

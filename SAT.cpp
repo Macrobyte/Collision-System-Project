@@ -1,75 +1,27 @@
 #include "SAT.h"
 
-
-//bool SAT::Collides(const ICollidable& shape1, const ICollidable& shape2)
-//{
-//    std::vector<Vector2> vertices1 = shape1.GetVertices();
-//    std::vector<Vector2> vertices2 = shape2.GetVertices();
-//    std::vector<Vector2> normals1 = shape1.GetNormals();
-//    std::vector<Vector2> normals2 = shape2.GetNormals();
-//
-//    if (dynamic_cast<const Circle*>(&shape1) || dynamic_cast<const Circle*>(&shape2))
-//    {
-//        const Circle* circle = dynamic_cast<const Circle*>(&shape1);
-//        const ICollidable* otherShape = &shape2;
-//        if (!circle) {
-//            circle = dynamic_cast<const Circle*>(&shape2);
-//            otherShape = &shape1;
-//        }
-//        if (!circle->Collides(*otherShape)) {
-//            return false;
-//        }
-//    }
-//    else
-//    {
-//        for (const auto& normal : normals1) {
-//            float min1, max1, min2, max2;
-//            ProjectOntoAxis(normal, vertices1, min1, max1);
-//            ProjectOntoAxis(normal, vertices2, min2, max2);
-//            if (max1 < min2 || max2 < min1) {
-//                return false;
-//            }
-//        }
-//
-//        for (const auto& normal : normals2) {
-//            float min1, max1, min2, max2;
-//            ProjectOntoAxis(normal, vertices1, min1, max1);
-//            ProjectOntoAxis(normal, vertices2, min2, max2);
-//            if (max1 < min2 || max2 < min1) {
-//                return false;
-//            }
-//        }
-//    }
-//
-//	return true;
-//}
-
 bool SAT::PolygonPolygonCollision(const IPolygonCollidable& polygon1, const IPolygonCollidable& polygon2)
 {
+    std::vector<Vector2> axes;
     std::vector<Vector2> vertices1 = polygon1.GetVertices();
     std::vector<Vector2> vertices2 = polygon2.GetVertices();
-    std::vector<Vector2> normals1 = polygon1.GetNormals();
-    std::vector<Vector2> normals2 = polygon2.GetNormals();
 
-    for (const auto& normal : normals1) {
+    // Get all the unique axes
+    GetUniqueAxes(vertices1, axes);
+    GetUniqueAxes(vertices2, axes);
+
+    // Project the vertices onto each axis and check for overlap
+    for (const auto& axis : axes) {
         float min1, max1, min2, max2;
-        ProjectOntoAxis(normal, vertices1, min1, max1);
-        ProjectOntoAxis(normal, vertices2, min2, max2);
+        ProjectOntoAxis(axis, vertices1, min1, max1);
+        ProjectOntoAxis(axis, vertices2, min2, max2);
+
         if (max1 < min2 || max2 < min1) {
             return false;
         }
     }
 
-    for (const auto& normal : normals2) {
-        float min1, max1, min2, max2;
-        ProjectOntoAxis(normal, vertices1, min1, max1);
-        ProjectOntoAxis(normal, vertices2, min2, max2);
-        if (max1 < min2 || max2 < min1) {
-            return false;
-        }
-    }
-
-    return true;       	
+    return true;
 }
 
 bool SAT::CircleCircleCollision(const ICircleCollidable& circle1, const ICircleCollidable& circle2)
@@ -103,13 +55,13 @@ bool SAT::PolygonCircleCollision(const IPolygonCollidable& polygon, const ICircl
 
         for (const Vector2& vertex : polygonVertices)
         {
-            float projection = dot(vertex, axis);
+            float projection = DotProduct(vertex, axis);
             if (projection < minProj1) minProj1 = projection;
             if (projection > maxProj1) maxProj1 = projection;
         }
 
-        float minProj2 = dot(circlePosition, axis) - circleRadius;
-        float maxProj2 = dot(circlePosition, axis) + circleRadius;
+        float minProj2 = DotProduct(circlePosition, axis) - circleRadius;
+        float maxProj2 = DotProduct(circlePosition, axis) + circleRadius;
 
         if (maxProj2 < minProj1 || maxProj1 < minProj2)
         {
@@ -122,11 +74,37 @@ bool SAT::PolygonCircleCollision(const IPolygonCollidable& polygon, const ICircl
 
 void SAT::ProjectOntoAxis(const Vector2& axis, const std::vector<Vector2>& vertices, float& min, float& max)
 {
-    min = std::numeric_limits<float>::max();
-    max = std::numeric_limits<float>::lowest();
-    for (const auto& vertex : vertices) {
-        float projection = dot(axis, vertex);
-        min = std::min(min, projection);
-        max = std::max(max, projection);
+    float dot_product = DotProduct(vertices[0], axis);
+    min = dot_product;
+    max = dot_product;
+    for (size_t i = 1; i < vertices.size(); i++) {
+        dot_product = DotProduct(vertices[i], axis);
+        if (dot_product < min) {
+            min = dot_product;
+        }
+        else if (dot_product > max) {
+            max = dot_product;
+        }
+    }
+}
+
+void SAT::GetUniqueAxes(const std::vector<Vector2>& vertices, std::vector<Vector2>& axes)
+{
+    for (size_t i = 0; i < vertices.size(); i++) {
+        size_t j = (i + 1) % vertices.size();
+        Vector2 edge = vertices[j] - vertices[i];
+        Vector2 normal(-edge.y, edge.x);
+        normal.normalize();
+
+        bool is_unique = true;
+        for (const auto& axis : axes) {
+            if (DotProduct(axis, normal) > 0.99f || DotProduct(axis, -normal) > 0.99f) {
+                is_unique = false;
+                break;
+            }
+        }
+        if (is_unique) {
+            axes.push_back(normal);
+        }
     }
 }

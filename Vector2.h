@@ -21,10 +21,18 @@ public:
     Vector2 operator-(const Vector2& other) const {
         return Vector2(x - other.x, y - other.y);
     }
-
+    
+    Vector2 operator-() const {
+        return Vector2(-x, -y);
+    }
+    
     Vector2 operator*(float scalar) const {
         return Vector2(x * scalar, y * scalar);
     }
+    
+	float operator*(const Vector2& other) const {
+		return x * other.x + y * other.y;
+	}
 
     Vector2 operator/(float scalar) const {
         return Vector2(x / scalar, y / scalar);
@@ -102,7 +110,7 @@ public:
         return Vector2(x * cos(angle) - y * sin(angle), x * sin(angle) + y * cos(angle));
     }
 
-	float dot(const Vector2& other) const {
+	float DotProduct(const Vector2& other) const {
 		return x * other.x + y * other.y;
 	}
 

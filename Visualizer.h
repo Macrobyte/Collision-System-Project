@@ -14,15 +14,12 @@ public:
 	static void Clean();
 	
 	static void AddShape(Shape* shape);
-	
-	
+		
 private:	
 	static SDL_Window* _window;
 	static SDL_Renderer* _renderer;
 	static bool _isRunning;
-	
-	
+		
 	static std::vector<Shape*> _shapes;
-
 };
 

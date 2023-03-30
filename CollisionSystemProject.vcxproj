@@ -138,11 +138,9 @@
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="CollisionHandler.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Pentagon.cpp" />
     <ClCompile Include="Polygon.cpp" />
-    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="SAT.cpp" />
-    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="Visualizer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -154,11 +152,9 @@
     <ClInclude Include="PolygonFactory.h" />
     <ClInclude Include="VUtils.h" />
     <ClInclude Include="ICollidable.h" />
-    <ClInclude Include="Pentagon.h" />
-    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="SAT.h" />
     <ClInclude Include="Shape.h" />
-    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Visualizer.h" />
   </ItemGroup>

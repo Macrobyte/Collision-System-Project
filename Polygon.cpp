@@ -1,7 +1,6 @@
 #include "Polygon.h"
 #include "Circle.h"
 
-#pragma region Shape Overrides
 void Polygon::Draw(SDL_Renderer* renderer)
 {
 	SDL_SetRenderDrawColor(renderer, GetColor().r, GetColor().g, GetColor().b, SDL_ALPHA_OPAQUE);
@@ -16,32 +15,10 @@ void Polygon::Draw(SDL_Renderer* renderer)
 
 void Polygon::Update(float deltaTime)
 {
-	switch (GetMoveDirection())
-	{
-	case MoveDirection::LEFT:
-		SetPosition(GetPosition() + Vector2(-50, 0) * deltaTime);
-		break;
-	case MoveDirection::RIGHT:
-		SetPosition(GetPosition() + Vector2(50, 0) * deltaTime);
-		break;
-	case MoveDirection::UP:
-		SetPosition(GetPosition() + Vector2(0, 50) * deltaTime);
-		break;
-	case MoveDirection::DOWN:
-		SetPosition(GetPosition() + Vector2(0, -50) * deltaTime);
-		break;
-	default:
-		break;
-	}
-
 	UpdateVertices();
-}
-#pragma endregion
 
-#pragma region Interface Methods
-std::vector<Vector2> Polygon::GetVertices() const
-{
-	return _vertices;
+	Vector2 newPosition = GetPosition() + GetVelocity() * deltaTime;
+	SetPosition(newPosition);
 }
 
 std::vector<Vector2> Polygon::GetNormals() const
@@ -60,37 +37,6 @@ std::vector<Vector2> Polygon::GetNormals() const
 	return normals;
 }
 
-void Polygon::SetPosition(const Vector2& position)
-{
-	Shape::SetPosition(position);
-	UpdateVertices();
-}
-
-Vector2 Polygon::GetPosition() const
-{
-	return Shape::GetPosition();
-}
-
-ShapeType Polygon::GetType() const
-{
-	return ShapeType::POLYGON;
-}
-
-void Polygon::OnCollision(const ICollidable& other) const
-{
-	const Polygon* polygon = dynamic_cast<const Polygon*>(&other);
-	if (polygon != nullptr)
-	{
-		std::cout << this->GetName() << " collided with " << polygon->GetName() << std::endl;
-	}
-
-	const Circle* circle = dynamic_cast<const Circle*>(&other);
-	if (circle != nullptr)
-	{
-		std::cout << this->GetName() << " collided with " << circle->GetName() << std::endl;
-	}
-}
-
 void Polygon::UpdateVertices()
 {
 	for (int i = 0; i < _vertices.size(); ++i)
@@ -98,7 +44,33 @@ void Polygon::UpdateVertices()
 		_vertices[i] = _originalVertices[i] + GetPosition();
 	}
 }
-#pragma endregion
+
+void Polygon::OnCollision(ICollidable& other)
+{
+	// Check if the other object is a polygon
+	if (const IPolygonCollidable* polygon = dynamic_cast<const IPolygonCollidable*>(&other))
+	{
+		// Get the collision normal
+		Vector2 collisionNormal = SAT::GetCollisionNormalPolygon(*this, *polygon);
+
+		SetVelocity(GetVelocity().reflect(collisionNormal));
+	
+		// Move the polygon out of the collision
+		SetPosition(GetPosition() + collisionNormal * SAT::GetOverlapPolygonPolygon(*this, *polygon, collisionNormal));
+	}
+	// Check if the other object is a circle
+	else if (const ICircleCollidable* circle = dynamic_cast<const ICircleCollidable*>(&other))
+	{
+		// Get the collision normal
+		Vector2 collisionNormal = SAT::GetCollisionNormalCirclePolygon(*circle, *this);
+
+		SetVelocity(GetVelocity().reflect(collisionNormal));
+
+		// Move circle out of collision
+		SetPosition(GetPosition() + collisionNormal * SAT::GetOverlapCirclePolygon(*circle, *this, collisionNormal));
+		
+	}
+}
 
 
 

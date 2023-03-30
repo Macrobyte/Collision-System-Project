@@ -16,7 +16,7 @@ public:
 
 	virtual ShapeType GetType() const = 0;
 	
-	virtual void OnCollision(const ICollidable& other) const = 0;
+	virtual void OnCollision(ICollidable& other) = 0;
 
 private:
 	ShapeType _shapeType;

@@ -1,7 +1,6 @@
 #include "Circle.h"
 #include "Polygon.h"
 
-#pragma region Shape Overrides
 void Circle::Draw(SDL_Renderer* renderer)
 {
 	SDL_SetRenderDrawColor(renderer, GetColor().r, GetColor().g, GetColor().b, SDL_ALPHA_OPAQUE);
@@ -35,58 +34,39 @@ void Circle::Draw(SDL_Renderer* renderer)
 	
 void Circle::Update(float deltaTime)
 {
-	switch (GetMoveDirection())
+	Vector2 newPosition = GetPosition() + GetVelocity() * deltaTime;
+	SetPosition(newPosition);
+}
+
+
+void Circle::OnCollision(ICollidable& other) 
+{
+	std::cout << "Circle collision" << std::endl;
+	// Check if the other object is a polygon
+	if (const IPolygonCollidable* polygon = dynamic_cast<const IPolygonCollidable*>(&other))
 	{
-	case MoveDirection::LEFT:
-		SetPosition(GetPosition() + Vector2(-100, 0) * deltaTime);
-		break;
-	case MoveDirection::RIGHT:
-		SetPosition(GetPosition() + Vector2(100, 0) * deltaTime);
-		break;
-	case MoveDirection::UP:
-		SetPosition(GetPosition() + Vector2(0, 100) * deltaTime);
-		break;
-	case MoveDirection::DOWN:
-		SetPosition(GetPosition() + Vector2(0, -100) * deltaTime);
-		break;
-	default:
-		break;
+		// Get the collision normal
+		Vector2 collisionNormal = SAT::GetCollisionNormalCirclePolygon(*this, *polygon);
+
+		SetVelocity(GetVelocity().reflect(collisionNormal));
+
+		// Move the polygon out of the collision
+		SetPosition(GetPosition() + collisionNormal * SAT::GetOverlapCirclePolygon(*this, *polygon, collisionNormal));
+	}
+	// Check if the other object is a circle
+	else if (const ICircleCollidable* circle = dynamic_cast<const ICircleCollidable*>(&other))
+	{
+		// Get the collision normal
+		Vector2 collisionNormal = (GetPosition() - circle->GetPosition()).normalize();
+
+		SetVelocity(GetVelocity().reflect(collisionNormal));
+
+		// Move the circle out of the collision
+		float overlap = (GetRadius() + circle->GetRadius()) - (GetPosition() - circle->GetPosition()).magnitude();
+		SetPosition(GetPosition() + collisionNormal * overlap);
+
 	}
 }
-
-#pragma endregion
-
-#pragma region ICollidable Interface Methods
-float Circle::GetRadius() const
-{
-	return _radius;
-}
-
-Vector2 Circle::GetPosition() const
-{
-	return Shape::GetPosition();
-}
-
-ShapeType Circle::GetType() const
-{
-	return ShapeType::CIRCLE;
-}
-
-void Circle::OnCollision(const ICollidable& other) const
-{
-	const Polygon* polygon = dynamic_cast<const Polygon*>(&other);
-	if (polygon != nullptr)
-	{
-		std::cout << this->GetName() << " collided with " << polygon->GetName() << std::endl;
-	}
-
-	const Circle* circle = dynamic_cast<const Circle*>(&other);
-	if (circle != nullptr)
-	{
-		std::cout << this->GetName() << " collided with " << circle->GetName() << std::endl;
-	}
-}
-#pragma endregion
 
 
 

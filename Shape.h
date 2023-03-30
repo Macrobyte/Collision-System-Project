@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <string>
 #include <vector>
+#include "SAT.h"
 #include "Vector2.h"
 
 struct RGB
@@ -13,39 +14,42 @@ struct RGB
     int b;    
 };
 
-enum MoveDirection
-{
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT
-};
-
 class Shape
 {
 public:
-    Shape(Vector2 position, RGB color, std::string name, MoveDirection direction) : _position(position), _color(color), _name(name), _moveDirection(direction) {}
+    Shape(Vector2 position, float speed, RGB color, std::string name, Vector2 direction)
+        : _position(position), _velocity(speed * direction), _color(color), _name(name), _moveDirection(direction) {}
     virtual ~Shape() {}
 	
     Vector2 GetPosition() const { return _position; }
-    void SetPosition(Vector2 position) { _position = position; }
+    virtual void SetPosition(Vector2 position) { _position = position; }
 
-	RGB GetColor() const { return _color; }
-	void SetColor(const RGB& color) { _color = color; }
+    RGB GetColor() const { return _color; }
+    virtual void SetColor(const RGB& color) { _color = color; }
 
     std::string GetName() const { return _name; }
 
-	MoveDirection GetMoveDirection() const { return _moveDirection; }
-	void SetMoveDirection(MoveDirection direction) { _moveDirection = direction; }
+    Vector2 GetMoveDirection() const { return _moveDirection; }
+	void SetMoveDirection(Vector2 direction) { _moveDirection = direction; }
+
+    void SetVelocity(Vector2 velocity) {
+        _velocity = velocity;
+        _moveDirection = _velocity.normalized();
+    }
+
+    Vector2 GetVelocity() const {
+        return _velocity;
+    }
     
     virtual void Draw(SDL_Renderer* renderer) = 0;
     virtual void Update(float deltaTime) = 0;
 private: 
     Vector2 _position;
-	RGB _color; 
-	std::string _name;
-    std::vector<Vector2> _vertices;
+    Vector2  _velocity;
+	Vector2 _moveDirection;
+	RGB _color;
     
-	MoveDirection _moveDirection;
+	std::string _name;
+    
 };
 

@@ -11,14 +11,17 @@ const int WINDOW_HEIGHT = 720;
 
 int main(int argc, char* argv[])
 {
+	float shapeSpeed = 50;
 	std::vector<Vector2> squareVertices = PolygonFactory::CreateSquare(50);
 	std::vector<Vector2> triangle = PolygonFactory::CreateTriangle(50);
+	std::vector<Vector2> pentagon = PolygonFactory::CreatePentagon(50);
 	std::vector<Vector2> nonagon = PolygonFactory::CreateNonagon(50);
+	std::vector<Vector2> decagon = PolygonFactory::CreateDecagon(50);
 	std::vector<Vector2> megagon = PolygonFactory::CreateMegagon(1);
 	
 	
-	Polygon* poly1 = new Polygon(Vector2(0, 400), RGB(255, 255, 255), "Poly 1", RIGHT, megagon);
-	Circle* circle1 = new Circle(Vector2(600, 400), 50, RGB(255, 255, 255), "Circle 1", LEFT);
+	Polygon* poly1 = new Polygon(Vector2(0, 350), shapeSpeed, RGB(255, 255, 255), "Poly 1", Vector2(1,0), pentagon);
+	Circle* circle1 = new Circle(Vector2(700, 400), shapeSpeed, 50, RGB(255, 255, 255), "Circle 1", Vector2(-1, 0));
 	
 	Visualizer::AddShape(poly1);
 	Visualizer::AddShape(circle1);

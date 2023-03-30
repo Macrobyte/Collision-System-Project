@@ -5,22 +5,22 @@
 class Circle : public Shape, public ICircleCollidable
 {
 public:
-	Circle(Vector2 position, float radius, RGB color, std::string name, MoveDirection direction) : Shape(position, color, name, direction), _radius(radius) {}
+	Circle(Vector2 position, float speed, float radius, RGB color, std::string name, Vector2 direction) 
+		: Shape(position, speed, color, name, direction), _radius(radius) {}
 	~Circle() {}
 
 #pragma region Shape Overrides
 	void Draw(SDL_Renderer* renderer) override;	
 	void Update(float deltaTime) override;
-	
 #pragma endregion
 
-#pragma region Interface Methods
-	float GetRadius() const override;
+#pragma region Interface Overrides
+	float GetRadius() const override { return _radius; }
 
-	Vector2 GetPosition() const override;
-	ShapeType GetType() const override;
+	Vector2 GetPosition() const override { return Shape::GetPosition(); }
+	ShapeType GetType() const override { return ShapeType::CIRCLE; }
 
-	void OnCollision(const ICollidable& other) const override;	
+	void OnCollision(ICollidable& other)override;
 #pragma endregion
 
 private:

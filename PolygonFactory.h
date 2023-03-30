@@ -34,6 +34,22 @@ public:
     }
 
 	/// <summary>
+	/// Creates a Rectangle with the given width and height
+	/// </summary>
+	/// <param name="width"></param>
+	/// <param name="height"></param>
+	/// <returns></returns>
+	static std::vector<Vector2> CreateRectangle(float width, float height)
+	{
+		std::vector<Vector2> vertices;
+		vertices.push_back(Vector2(-width / 2, -height / 2));
+		vertices.push_back(Vector2(width / 2, -height / 2));
+		vertices.push_back(Vector2(width / 2, height / 2));
+		vertices.push_back(Vector2(-width / 2, height / 2));
+		return vertices;
+	}
+
+	/// <summary>
 	/// Creates a Pentagon with the given radius
 	/// </summary>
 	/// <param name="radius"></param>
@@ -164,7 +180,7 @@ public:
 	}
 
 	/// <summary>
-	/// Creates a Megagon with the given radius
+	/// Creates a Megagon with the given radius. DO NOT ACTUALLY USE THIS IT WILL RUN VERY SLOW
 	/// </summary>
 	/// <param name="radius"></param>
 	/// <returns></returns>

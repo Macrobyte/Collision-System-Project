@@ -1,5 +1,6 @@
 #include "Polygon.h"
 #include "Circle.h"
+#include "Visualizer.h"
 
 void Polygon::Draw(SDL_Renderer* renderer)
 {
@@ -16,6 +17,32 @@ void Polygon::Draw(SDL_Renderer* renderer)
 void Polygon::Update(float deltaTime)
 {
 	UpdateVertices();
+
+	// TEMPORARY WAY OF DOING THIS
+	const std::vector<Vector2>& vertices = GetVertices();
+	Vector2 center = GetPosition();
+	float radius = 0.0f;
+	for (const Vector2& vertex : vertices)
+	{
+		float distance = (vertex - center).magnitude();
+		if (distance > radius)
+		{
+			radius = distance;
+		}
+	}
+
+	if (Visualizer::IsOutOfBounds(GetPosition(), radius))
+	{
+		if (GetPosition().x - radius < 0 || GetPosition().x + radius > Visualizer::GetWidth())
+		{
+			SetVelocity(GetVelocity().reflect(Vector2::Right()));
+		}
+		else
+		{
+			SetVelocity(GetVelocity().reflect(Vector2::Down()));
+		}
+	}
+	// TEMPORARY WAY OF DOING THIS
 
 	Vector2 newPosition = GetPosition() + GetVelocity() * deltaTime;
 	SetPosition(newPosition);
@@ -47,28 +74,17 @@ void Polygon::UpdateVertices()
 
 void Polygon::OnCollision(ICollidable& other)
 {
-	// Check if the other object is a polygon
 	if (const IPolygonCollidable* polygon = dynamic_cast<const IPolygonCollidable*>(&other))
 	{
-		// Get the collision normal
 		Vector2 collisionNormal = SAT::GetCollisionNormalPolygon(*this, *polygon);
 
 		SetVelocity(GetVelocity().reflect(collisionNormal));
 		
-		// Move polygon out of collision
-		SetPosition(GetPosition() + collisionNormal );
+		SetPosition(GetPosition() + collisionNormal);
 	}
-	// Check if the other object is a circle
 	else if (const ICircleCollidable* circle = dynamic_cast<const ICircleCollidable*>(&other))
 	{
-		// Get the collision normal
-		Vector2 collisionNormal = SAT::GetCollisionNormalCirclePolygon(*circle, *this);
-
-		SetVelocity(GetVelocity().reflect(collisionNormal));
-
-		// Move circle out of collision
-		SetPosition(GetPosition() + collisionNormal * SAT::GetOverlapCirclePolygon(*circle, *this, collisionNormal));
-		
+		//Not yet implemented
 	}
 }
 

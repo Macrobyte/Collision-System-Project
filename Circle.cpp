@@ -1,5 +1,6 @@
 #include "Circle.h"
 #include "Polygon.h"
+#include "Visualizer.h"
 
 void Circle::Draw(SDL_Renderer* renderer)
 {
@@ -34,6 +35,20 @@ void Circle::Draw(SDL_Renderer* renderer)
 	
 void Circle::Update(float deltaTime)
 {
+	// TEMPORARY WAY OF DOING THIS
+	if (Visualizer::IsOutOfBounds(GetPosition(), GetRadius()))
+	{
+		if (GetPosition().x - GetRadius() < 0 || GetPosition().x + GetRadius() > Visualizer::GetWidth())
+		{
+			SetVelocity(GetVelocity().reflect(Vector2::Right()));
+		}
+		else
+		{
+			SetVelocity(GetVelocity().reflect(Vector2::Down()));
+		}
+	}
+	// TEMPORARY WAY OF DOING THIS
+	
 	Vector2 newPosition = GetPosition() + GetVelocity() * deltaTime;
 	SetPosition(newPosition);
 }
@@ -41,27 +56,16 @@ void Circle::Update(float deltaTime)
 
 void Circle::OnCollision(ICollidable& other) 
 {
-	
-	// Check if the other object is a polygon
 	if (const IPolygonCollidable* polygon = dynamic_cast<const IPolygonCollidable*>(&other))
 	{
-		// Get the collision normal
-		Vector2 collisionNormal = SAT::GetCollisionNormalCirclePolygon(*this, *polygon);
-
-		SetVelocity(GetVelocity().reflect(collisionNormal));
-
-		// Move the polygon out of the collision
-		SetPosition(GetPosition() + collisionNormal );
+		//Not yet implemented
 	}
-	// Check if the other object is a circle
 	else if (const ICircleCollidable* circle = dynamic_cast<const ICircleCollidable*>(&other))
 	{
-		// Get the collision normal
 		Vector2 collisionNormal = (GetPosition() - circle->GetPosition()).normalize();
 
 		SetVelocity(GetVelocity().reflect(collisionNormal));
 
-		// Move the circle out of the collision
 		float overlap = (GetRadius() + circle->GetRadius()) - (GetPosition() - circle->GetPosition()).magnitude();
 		SetPosition(GetPosition() + collisionNormal * overlap);
 

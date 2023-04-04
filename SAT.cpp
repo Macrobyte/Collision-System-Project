@@ -1,5 +1,12 @@
 #include "SAT.h"
 
+/// <summary>
+/// The function takes in two objects that implement the IPolygonCollidable interface, which provides a method to retrieve the vertices of the polygon. 
+/// The function then calculates all the unique axes of both polygons by performing cross products between the edges of each polygon.
+/// </summary>
+/// <param name="polygon1"></param>
+/// <param name="polygon2"></param>
+/// <returns></returns>
 bool SAT::PolygonPolygonCollision(IPolygonCollidable& polygon1, IPolygonCollidable& polygon2)
 {
     std::vector<Vector2> axes;
@@ -21,11 +28,16 @@ bool SAT::PolygonPolygonCollision(IPolygonCollidable& polygon1, IPolygonCollidab
         }
     }
 
-     
-
     return true;
 }
 
+/// <summary>
+/// This function checks for collision between two circles by comparing the distance between their centers to the sum of their radii. 
+/// If the distance is less than the sum of the radii, then the circles are overlapping and there is a collision.
+/// </summary>
+/// <param name="circle1"></param>
+/// <param name="circle2"></param>
+/// <returns></returns>
 bool SAT::CircleCircleCollision(ICircleCollidable& circle1, ICircleCollidable& circle2)
 {
     float distance = (circle1.GetPosition() - circle2.GetPosition()).magnitude();
@@ -34,6 +46,12 @@ bool SAT::CircleCircleCollision(ICircleCollidable& circle1, ICircleCollidable& c
     return distance < radiusSum;
 }
 
+/// <summary>
+/// This function checks for collision between a circle and a polygon by projecting the circle onto each axis of the polygon and checking for overlap.
+/// </summary>
+/// <param name="polygon"></param>
+/// <param name="circle"></param>
+/// <returns></returns>
 bool SAT::PolygonCircleCollision(IPolygonCollidable& polygon, ICircleCollidable& circle)
 {
     const std::vector<Vector2>& polygonVertices = polygon.GetVertices();
@@ -74,6 +92,13 @@ bool SAT::PolygonCircleCollision(IPolygonCollidable& polygon, ICircleCollidable&
     return true;
 }
 
+/// <summary>
+/// This function calculates the collision normal between two polygons using the Separating Axis Theorem (SAT) algorithm. 
+/// The collision normal is the direction in which the polygons are separating, and is used to calculate the collision response (e.g. bouncing off each other).
+/// </summary>
+/// <param name="polygon1"></param>
+/// <param name="polygon2"></param>
+/// <returns></returns>
 Vector2 SAT::GetCollisionNormalPolygon(const IPolygonCollidable& polygon1, const IPolygonCollidable& polygon2)
 {
  
@@ -137,6 +162,13 @@ Vector2 SAT::GetCollisionNormalPolygon(const IPolygonCollidable& polygon1, const
     return collisionNormal;
 }
 
+/// <summary>
+///  This function calculates the collision normal between two circles using the Separating Axis Theorem (SAT) algorithm.
+///  The collision normal is the direction in which the circles are separating, and is used to calculate the collision response (e.g. bouncing off each other).
+/// </summary>
+/// <param name="circle1"></param>
+/// <param name="circle2"></param>
+/// <returns></returns>
 Vector2 SAT::GetCollisionNormalCircle(const ICircleCollidable& circle1, const ICircleCollidable& circle2)
 {
     Vector2 center1 = circle1.GetPosition();
@@ -165,31 +197,46 @@ Vector2 SAT::GetCollisionNormalCircle(const ICircleCollidable& circle1, const IC
     return collisionNormal * overlap;
 }
 
+/// <summary>
+/// This function calculates the collision normal between a circle and a polygon using the Separating Axis Theorem (SAT) algorithm.
+/// The collision normal is the direction in which the circle and polygon are separating, and is used to calculate the collision response.
+/// NOT CURRENTLY WORKING!
+/// </summary>
+/// <param name="circle"></param>
+/// <param name="polygon"></param>
+/// <returns></returns>
 Vector2 SAT::GetCollisionNormalCirclePolygon(const ICircleCollidable& circle, const IPolygonCollidable& polygon)
 {
+    const std::vector<Vector2>& polygonVertices = polygon.GetVertices();
+    Vector2 circlePosition = circle.GetPosition();
+    float circleRadius = circle.GetRadius();
+
     std::vector<Vector2> axes;
-    std::vector<Vector2> vertices = polygon.GetVertices();
+    axes.reserve(polygonVertices.size() + 1);
 
     // Get all the unique axes
-    GetUniqueAxes(vertices, axes);
+    GetUniqueAxes(polygonVertices, axes);
 
     // Add the axis perpendicular to the circle's center to the circle's center-to-vertex axes
-    Vector2 centerToCircle = circle.GetPosition() - polygon.GetPosition();
+    Vector2 centerToCircle = circlePosition - polygon.GetPosition();
     axes.push_back(centerToCircle);
-    for (const auto& vertex : vertices) {
+    for (const auto& vertex : polygonVertices) {
         axes.push_back(Perpendicular(centerToCircle, vertex - polygon.GetPosition()));
     }
 
     // Project the vertices and the circle's center onto each axis and check for overlap
     float minOverlap = std::numeric_limits<float>::max();
     Vector2 collisionNormal;
-    for (const auto& axis : axes) {
-        float min1, max1, min2, max2;
-        ProjectOntoAxis(axis, vertices, min1, max1);
-        float circleProjection = DotProduct(circle.GetPosition(), axis);
-        min2 = circleProjection - circle.GetRadius();
-        max2 = circleProjection + circle.GetRadius();
+    for (const auto& axis : axes)
+    {
+        // Project the vertices and the circle's center onto the axis
+        float circleProjection = DotProduct(circlePosition, axis);
+        float min1 = circleProjection - circleRadius;
+        float max1 = circleProjection + circleRadius;
+        float min2, max2;
+        ProjectOntoAxis(axis, polygonVertices, min2, max2);
 
+        // Check for overlap
         if (max1 < min2 || max2 < min1) {
             return Vector2::Zero();  // No collision
         }
@@ -207,46 +254,16 @@ Vector2 SAT::GetCollisionNormalCirclePolygon(const ICircleCollidable& circle, co
         collisionNormal = Perpendicular(collisionNormal, centerToCircle);
     }
 
-    return collisionNormal.normalized();
+    return collisionNormal;
 }
 
-void SAT::GetUniqueAxes(const std::vector<Vector2>& vertices, std::vector<Vector2>& axes)
-{
-    for (size_t i = 0; i < vertices.size(); i++) {
-        size_t j = (i + 1) % vertices.size();
-        Vector2 edge = vertices[j] - vertices[i];
-        Vector2 normal(-edge.y, edge.x);
-        normal.normalize();
-
-        bool is_unique = true;
-        for (const auto& axis : axes) {
-            if (DotProduct(axis, normal) > 0.99f || DotProduct(axis, -normal) > 0.99f) {
-                is_unique = false;
-                break;
-            }
-        }
-        if (is_unique) {
-            axes.push_back(normal);
-        }
-    }
-}
-
-void SAT::ProjectOntoAxis(const Vector2& axis, const std::vector<Vector2>& vertices, float& min, float& max)
-{
-    float dot_product = DotProduct(vertices[0], axis);
-    min = dot_product;
-    max = dot_product;
-    for (size_t i = 1; i < vertices.size(); i++) {
-        dot_product = DotProduct(vertices[i], axis);
-        if (dot_product < min) {
-            min = dot_product;
-        }
-        else if (dot_product > max) {
-            max = dot_product;
-        }
-    }
-}
-
+/// <summary>
+/// This function calculates the overlap between two polygons along a given axis.
+/// </summary>
+/// <param name="polygon1"></param>
+/// <param name="polygon2"></param>
+/// <param name="axis"></param>
+/// <returns></returns>
 float SAT::GetOverlapPolygon(const IPolygonCollidable& polygon1, const IPolygonCollidable& polygon2, const Vector2& axis)
 {
     // Project the vertices of both polygons onto the axis
@@ -275,36 +292,93 @@ float SAT::GetOverlapPolygon(const IPolygonCollidable& polygon1, const IPolygonC
     return overlap;
 }
 
-float SAT::GetOverlapCircleCircle(const ICircleCollidable& circle1, const ICircleCollidable& circle2, const Vector2& axis)
-{
-    return 0.0f;
-}
-
+/// <summary>
+/// This function calculates the overlap between a circle and a polygon projected onto a given axis. 
+/// It takes in two arguments - an object that implements the ICircleCollidable interface and an object that implements the IPolygonCollidable interface, as well as a Vector2 axis to project onto. 
+/// The function returns a float representing the overlap amount between the circle and polygon projections.
+/// NOT CURRENTLY WORKING!
+/// </summary>
+/// <param name="circle"></param>
+/// <param name="polygon"></param>
+/// <param name="axis"></param>
+/// <returns></returns>
 float SAT::GetOverlapCirclePolygon(const ICircleCollidable& circle, const IPolygonCollidable& polygon, const Vector2& axis)
 {
-    // Project the center of the circle onto the axis
+    // Project the vertices of the polygon and the center of the circle onto the axis
     float circleProjection = DotProduct(circle.GetPosition(), axis);
+    float minVertexProjection = std::numeric_limits<float>::max();
+    float maxVertexProjection = std::numeric_limits<float>::lowest();
 
-    // Project the vertices of the polygon onto the axis
     std::vector<Vector2> vertices = polygon.GetVertices();
-    float min, max;
-    ProjectOntoAxis(axis, vertices, min, max);
+    for (const auto& vertex : vertices) {
+        float vertexProjection = DotProduct(vertex, axis);
+        minVertexProjection = std::min(minVertexProjection, vertexProjection);
+        maxVertexProjection = std::max(maxVertexProjection, vertexProjection);
+    }
 
     // Calculate the overlap between the circle and polygon projections
     float overlap = 0.0f;
-    if (circleProjection + circle.GetRadius() < min || circleProjection - circle.GetRadius() > max) {
+
+    if (circleProjection + circle.GetRadius() < minVertexProjection || circleProjection - circle.GetRadius() > maxVertexProjection) {
         // The projections do not overlap
         overlap = 0.0f;
     }
     else {
         // The projections overlap, so calculate the overlap amount
-        if (circleProjection < min) {
-            overlap = circleProjection + circle.GetRadius() - min;
-        }
-        else if (circleProjection > max) {
-            overlap = circleProjection - circle.GetRadius() - max;
-        }
+        overlap = std::min(circleProjection + circle.GetRadius() - minVertexProjection, maxVertexProjection - circleProjection - circle.GetRadius());
     }
 
     return overlap;
+}
+
+/// <summary>
+/// This function calculates unique axes from a list of vertices of a convex polygon. 
+/// It takes in two parameters: a vector of vertices and a reference to a vector of axes. 
+/// The function iterates over each vertex of the polygon, calculates the normal vector of the edge between the current vertex and the next vertex, and checks if the normal is unique by comparing it to the existing axes in the axes vector. 
+/// If the normal is unique, it is added to the axes vector. At the end of the function, the axes vector contains all the unique axes of the polygon.
+/// </summary>
+/// <param name="vertices"></param>
+/// <param name="axes"></param>
+void SAT::GetUniqueAxes(const std::vector<Vector2>& vertices, std::vector<Vector2>& axes)
+{
+    for (size_t i = 0; i < vertices.size(); i++) {
+        size_t j = (i + 1) % vertices.size();
+        Vector2 edge = vertices[j] - vertices[i];
+        Vector2 normal(-edge.y, edge.x);
+        normal.normalize();
+
+        bool is_unique = true;
+        for (const auto& axis : axes) {
+            if (DotProduct(axis, normal) > 0.99f || DotProduct(axis, -normal) > 0.99f) {
+                is_unique = false;
+                break;
+            }
+        }
+        if (is_unique) {
+            axes.push_back(normal);
+        }
+    }
+}
+
+/// <summary>
+/// This function projects a set of vertices onto a given axis and returns the minimum and maximum values of the resulting projections.
+/// </summary>
+/// <param name="axis"></param>
+/// <param name="vertices"></param>
+/// <param name="min"></param>
+/// <param name="max"></param>
+void SAT::ProjectOntoAxis(const Vector2& axis, const std::vector<Vector2>& vertices, float& min, float& max)
+{
+    float dot_product = DotProduct(vertices[0], axis);
+    min = dot_product;
+    max = dot_product;
+    for (size_t i = 1; i < vertices.size(); i++) {
+        dot_product = DotProduct(vertices[i], axis);
+        if (dot_product < min) {
+            min = dot_product;
+        }
+        else if (dot_product > max) {
+            max = dot_product;
+        }
+    }
 }

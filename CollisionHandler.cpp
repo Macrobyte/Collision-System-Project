@@ -3,11 +3,22 @@
 
 std::vector<ICollidable*> CollisionHandler::_collidables = std::vector<ICollidable*>();
 
+/// <summary>
+/// This function adds a new ICollidable object to the list of collidables managed by the CollisionHandler. 
+/// The ICollidable object represents an object in the simulation that can collide with other objects. 
+/// The object is added to the end of the _collidables vector, which stores pointers to all of the collidables.
+/// </summary>
+/// <param name="collidable"></param>
 void CollisionHandler::AddCollidable(ICollidable* collidable)
 {
 	_collidables.push_back(collidable);
 }
 
+/// <summary>
+/// This function handles collisions between the collidables in the _collidables vector. 
+/// It does this by iterating over all pairs of collidables and checking their types to determine which collision detection algorithm to use.
+/// In this case SAT (Separating Axis Theorem)
+/// </summary>
 void CollisionHandler::HandleCollisions()
 {
     for (size_t i = 0; i < _collidables.size(); ++i) {

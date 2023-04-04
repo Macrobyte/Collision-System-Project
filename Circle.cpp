@@ -2,6 +2,11 @@
 #include "Polygon.h"
 #include "Visualizer.h"
 
+/// <summary>
+/// The circle is drawn using the midpoint circle algorithm, which calculates and draws each pixel of the circle based on its radius and position. 
+/// The function sets the renderer draw color to the circle's color before drawing it.
+/// </summary>
+/// <param name="renderer"></param>
 void Circle::Draw(SDL_Renderer* renderer)
 {
 	SDL_SetRenderDrawColor(renderer, GetColor().r, GetColor().g, GetColor().b, SDL_ALPHA_OPAQUE);
@@ -32,7 +37,11 @@ void Circle::Draw(SDL_Renderer* renderer)
 		x++;
 	}
 }
-	
+
+/// <summary>
+/// This method updates the position of the Circle based on its current velocity and the amount of time that has passed since the last update.
+/// </summary>
+/// <param name="deltaTime"></param>
 void Circle::Update(float deltaTime)
 {
 	// TEMPORARY WAY OF DOING THIS
@@ -53,7 +62,10 @@ void Circle::Update(float deltaTime)
 	SetPosition(newPosition);
 }
 
-
+/// <summary>
+/// This method handles handles collision with another ICollidable object. The method checks the type of the colliding object using dynamic_cast to determine if it's a IPolygonCollidable or an ICircleCollidable.
+/// </summary>
+/// <param name="other"></param>
 void Circle::OnCollision(ICollidable& other) 
 {
 	if (const IPolygonCollidable* polygon = dynamic_cast<const IPolygonCollidable*>(&other))

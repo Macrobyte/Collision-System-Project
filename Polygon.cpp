@@ -54,9 +54,9 @@ void Polygon::OnCollision(ICollidable& other)
 		Vector2 collisionNormal = SAT::GetCollisionNormalPolygon(*this, *polygon);
 
 		SetVelocity(GetVelocity().reflect(collisionNormal));
-	
-		// Move the polygon out of the collision
-		SetPosition(GetPosition() + collisionNormal * SAT::GetOverlapPolygonPolygon(*this, *polygon, collisionNormal));
+		
+		// Move polygon out of collision
+		SetPosition(GetPosition() + collisionNormal );
 	}
 	// Check if the other object is a circle
 	else if (const ICircleCollidable* circle = dynamic_cast<const ICircleCollidable*>(&other))

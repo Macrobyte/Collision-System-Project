@@ -21,6 +21,8 @@ bool SAT::PolygonPolygonCollision(IPolygonCollidable& polygon1, IPolygonCollidab
         }
     }
 
+     
+
     return true;
 }
 
@@ -74,41 +76,42 @@ bool SAT::PolygonCircleCollision(IPolygonCollidable& polygon, ICircleCollidable&
 
 Vector2 SAT::GetCollisionNormalPolygon(const IPolygonCollidable& polygon1, const IPolygonCollidable& polygon2)
 {
-    std::vector<Vector2> axes1 = polygon1.GetNormals();
-    std::vector<Vector2> axes2 = polygon2.GetNormals();
-
+ 
     std::vector<Vector2> vertices1 = polygon1.GetVertices();
     std::vector<Vector2> vertices2 = polygon2.GetVertices();
 
     // Combine the axes of both polygons
     std::vector<Vector2> axes;
-    axes.insert(axes.end(), axes1.begin(), axes1.end());
-    axes.insert(axes.end(), axes2.begin(), axes2.end());
+    GetUniqueAxes(vertices1, axes);
+    GetUniqueAxes(vertices2, axes);
 
     // Initialize minimum overlap and collision normal
     float minOverlap = std::numeric_limits<float>::max();
     Vector2 collisionNormal;
 
     // Project vertices of both polygons onto each axis
-    for (const auto& axis : axes)
+    for (size_t i = 0; i < axes.size(); i++)
     {
-        float min1 = std::numeric_limits<float>::max();
-        float max1 = std::numeric_limits<float>::min();
-        float min2 = std::numeric_limits<float>::max();
-        float max2 = std::numeric_limits<float>::min();
+        Vector2 axis = axes[i];
 
         // Project vertices of polygon 1 onto the current axis
-        for (const auto& vertex : vertices1)
+        float min1 = DotProduct(vertices1[0], axis);
+        float max1 = min1;
+
+        for (size_t j = 1; j < vertices1.size(); j++)
         {
-            float projection = DotProduct(vertex, axis);
+            float projection = DotProduct(vertices1[j], axis);
             min1 = std::min(min1, projection);
             max1 = std::max(max1, projection);
         }
 
         // Project vertices of polygon 2 onto the current axis
-        for (const auto& vertex : vertices2)
+        float min2 = DotProduct(vertices2[0], axis);
+        float max2 = min2;
+
+        for (size_t j = 1; j < vertices2.size(); j++)
         {
-            float projection = DotProduct(vertex, axis);
+            float projection = DotProduct(vertices2[j], axis);
             min2 = std::min(min2, projection);
             max2 = std::max(max2, projection);
         }
@@ -119,7 +122,7 @@ Vector2 SAT::GetCollisionNormalPolygon(const IPolygonCollidable& polygon1, const
         // If there is no overlap on the current axis, the polygons do not collide
         if (overlap == 0.0f)
         {
-            return Vector2(0,0);
+            return Vector2(0, 0);
         }
 
         // If the overlap on the current axis is the smallest so far, set it as the new minimum overlap
@@ -129,7 +132,7 @@ Vector2 SAT::GetCollisionNormalPolygon(const IPolygonCollidable& polygon1, const
             collisionNormal = axis;
         }
     }
-
+    
     // If we get here, the polygons must be colliding
     return collisionNormal;
 }
@@ -244,7 +247,7 @@ void SAT::ProjectOntoAxis(const Vector2& axis, const std::vector<Vector2>& verti
     }
 }
 
-float SAT::GetOverlapPolygonPolygon(const IPolygonCollidable& polygon1, const IPolygonCollidable& polygon2, const Vector2& axis)
+float SAT::GetOverlapPolygon(const IPolygonCollidable& polygon1, const IPolygonCollidable& polygon2, const Vector2& axis)
 {
     // Project the vertices of both polygons onto the axis
     std::vector<Vector2> vertices1 = polygon1.GetVertices();

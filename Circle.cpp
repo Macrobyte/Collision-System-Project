@@ -41,7 +41,7 @@ void Circle::Update(float deltaTime)
 
 void Circle::OnCollision(ICollidable& other) 
 {
-	std::cout << "Circle collision" << std::endl;
+	
 	// Check if the other object is a polygon
 	if (const IPolygonCollidable* polygon = dynamic_cast<const IPolygonCollidable*>(&other))
 	{
@@ -51,7 +51,7 @@ void Circle::OnCollision(ICollidable& other)
 		SetVelocity(GetVelocity().reflect(collisionNormal));
 
 		// Move the polygon out of the collision
-		SetPosition(GetPosition() + collisionNormal * SAT::GetOverlapCirclePolygon(*this, *polygon, collisionNormal));
+		SetPosition(GetPosition() + collisionNormal );
 	}
 	// Check if the other object is a circle
 	else if (const ICircleCollidable* circle = dynamic_cast<const ICircleCollidable*>(&other))

@@ -14,7 +14,7 @@ public:
 	static Vector2 GetCollisionNormalCircle(const ICircleCollidable& circle1, const ICircleCollidable& circle2);
 	static Vector2 GetCollisionNormalCirclePolygon(const ICircleCollidable& circle, const IPolygonCollidable& polygon);
 
-	static float GetOverlapPolygonPolygon(const IPolygonCollidable& polygon1, const IPolygonCollidable& polygon2, const Vector2& axis);
+	static float GetOverlapPolygon(const IPolygonCollidable& polygon1, const IPolygonCollidable& polygon2, const Vector2& axis);
 	static float GetOverlapCircleCircle(const ICircleCollidable& circle1, const ICircleCollidable& circle2, const Vector2& axis);
 	static float GetOverlapCirclePolygon(const ICircleCollidable& circle, const IPolygonCollidable& polygon, const Vector2& axis);
 	

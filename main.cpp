@@ -11,8 +11,8 @@ const int WINDOW_HEIGHT = 720;
 
 int main(int argc, char* argv[])
 {
-	float shapeSpeed = 50;
-	std::vector<Vector2> squareVertices = PolygonFactory::CreateSquare(50);
+	float shapeSpeed = 150;
+	std::vector<Vector2> square = PolygonFactory::CreateSquare(50);
 	std::vector<Vector2> triangle = PolygonFactory::CreateTriangle(50);
 	std::vector<Vector2> pentagon = PolygonFactory::CreatePentagon(50);
 	std::vector<Vector2> nonagon = PolygonFactory::CreateNonagon(50);
@@ -21,13 +21,14 @@ int main(int argc, char* argv[])
 	
 	
 	Polygon* poly1 = new Polygon(Vector2(0, 350), shapeSpeed, RGB(255, 255, 255), "Poly 1", Vector2(1,0), pentagon);
+	Polygon* poly2 = new Polygon(Vector2(700, 400), shapeSpeed, RGB(255, 255, 255), "Poly 1", Vector2(-1,0), nonagon);
 	Circle* circle1 = new Circle(Vector2(700, 400), shapeSpeed, 50, RGB(255, 255, 255), "Circle 1", Vector2(-1, 0));
 	
 	Visualizer::AddShape(poly1);
-	Visualizer::AddShape(circle1);
+	Visualizer::AddShape(poly2);
 	
 	CollisionHandler::AddCollidable(poly1);
-	CollisionHandler::AddCollidable(circle1);
+	CollisionHandler::AddCollidable(poly2);
 
 	if (Visualizer::Initialize("Collision System Demo", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, false))
 	{

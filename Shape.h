@@ -37,9 +37,7 @@ public:
         _moveDirection = _velocity.normalized();
     }
 
-    Vector2 GetVelocity() const {
-        return _velocity;
-    }
+    Vector2 GetVelocity() const { return _velocity; }
     
     virtual void Draw(SDL_Renderer* renderer) = 0;
     virtual void Update(float deltaTime) = 0;

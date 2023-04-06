@@ -11,16 +11,15 @@ const int WINDOW_HEIGHT = 900;
 
 void TestPolygonCollision(float speed)
 {
-	float shapeSpeed = speed;
 	std::vector<Vector2> hexagon = PolygonFactory::CreateHexagon(50);
 	std::vector<Vector2> heptagon = PolygonFactory::CreateHeptagon(50);
 	std::vector<Vector2> pentagon = PolygonFactory::CreatePentagon(50);
 	std::vector<Vector2> nonagon = PolygonFactory::CreateNonagon(50);
 
-	Polygon* poly1 = new Polygon(Vector2(100, 100), shapeSpeed, RGB(255, 100, 100), "Poly 1", Vector2(1, 1), pentagon);
-	Polygon* poly2 = new Polygon(Vector2(100, 800), shapeSpeed, RGB(100, 255, 100), "Poly 2", Vector2(1, -1), nonagon);
-	Polygon* poly3 = new Polygon(Vector2(1500, 100), shapeSpeed, RGB(100, 100, 255), "Poly 2", Vector2(-1, 1), heptagon);
-	Polygon* poly4 = new Polygon(Vector2(1500, 800), shapeSpeed, RGB(255, 255, 100), "Poly 2", Vector2(-1, -1), hexagon);
+	Polygon* poly1 = new Polygon(Vector2(100, 100), speed, RGB(255, 100, 100), "Poly 1", Vector2(1, 1), pentagon);
+	Polygon* poly2 = new Polygon(Vector2(100, 800), speed, RGB(100, 255, 100), "Poly 2", Vector2(1, -1), nonagon);
+	Polygon* poly3 = new Polygon(Vector2(1500, 100), speed, RGB(100, 100, 255), "Poly 3", Vector2(-1, 1), heptagon);
+	Polygon* poly4 = new Polygon(Vector2(1500, 800), speed, RGB(255, 255, 100), "Poly 4", Vector2(-1, -1), hexagon);
 
 	Visualizer::AddShape(poly1);
 	Visualizer::AddShape(poly2);
@@ -35,12 +34,11 @@ void TestPolygonCollision(float speed)
 
 void TestCircleCollision(float speed)
 {
-	float shapeSpeed = speed;
 	//Circles for testing. Note: They collide with eachother but not with other polygons
-	Circle* circle1 = new Circle(Vector2(100, 350), shapeSpeed, 50, RGB(255, 100, 100), "Circle 1", Vector2(1, 0));
-	Circle* circle2 = new Circle(Vector2(700, 400), shapeSpeed, 50, RGB(100, 255, 100), "Circle 2", Vector2(-1, 0));
-	Circle* circle3 = new Circle(Vector2(500, 500), shapeSpeed, 50, RGB(100, 100, 255), "Circle 2", Vector2(0, 1));
-	Circle* circle4 = new Circle(Vector2(600, 300), shapeSpeed, 50, RGB(255, 255, 100), "Circle 2", Vector2(0,-1));
+	Circle* circle1 = new Circle(Vector2(100, 350), speed, 50, RGB(255, 100, 100), "Circle 1", Vector2(1, 0));
+	Circle* circle2 = new Circle(Vector2(700, 400), speed, 50, RGB(100, 255, 100), "Circle 2", Vector2(-1, 0));
+	Circle* circle3 = new Circle(Vector2(500, 500), speed, 50, RGB(100, 100, 255), "Circle 3", Vector2(0, 1));
+	Circle* circle4 = new Circle(Vector2(600, 300), speed, 50, RGB(255, 255, 100), "Circle 4", Vector2(0,-1));
 	 
 
 	Visualizer::AddShape(circle1);
@@ -54,10 +52,26 @@ void TestCircleCollision(float speed)
 	CollisionHandler::AddCollidable(circle4);
 }
 
+void TestPolyCircleCollision(float speed)
+{
+	Circle* circle = new Circle(Vector2(100, 100), speed, 50, RGB(255, 100, 100), "Circle 1", Vector2(1, 0));
+	
+	std::vector<Vector2> pentagon = PolygonFactory::CreateRectangle(50, 100);
+	Polygon* poly = new Polygon(Vector2(350, 100), speed, RGB(156, 200, 100), "Poly 1", Vector2(-1, 0), pentagon);
+
+	Visualizer::AddShape(poly);
+	Visualizer::AddShape(circle);
+
+	CollisionHandler::AddCollidable(poly);
+	CollisionHandler::AddCollidable(circle);
+}
+
+
 int main(int argc, char* argv[])
 {
-	TestPolygonCollision(200);
+	//TestPolygonCollision(200);
 	//TestCircleCollision(200);
+	TestPolyCircleCollision(200);
 
 	if (Visualizer::Initialize("Collision System Demo", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, false))
 	{

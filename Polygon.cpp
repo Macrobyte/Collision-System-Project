@@ -102,6 +102,7 @@ void Polygon::OnCollision(ICollidable& other)
 {
 	if (const IPolygonCollidable* polygon = dynamic_cast<const IPolygonCollidable*>(&other))
 	{
+		std::cout << "Polygon collided with polygon" << std::endl;
 		Vector2 collisionNormal = SAT::GetCollisionNormalPolygon(*this, *polygon);
 
 		SetVelocity(GetVelocity().reflect(collisionNormal));
@@ -110,7 +111,17 @@ void Polygon::OnCollision(ICollidable& other)
 	}
 	else if (const ICircleCollidable* circle = dynamic_cast<const ICircleCollidable*>(&other))
 	{
-		//Not yet implemented
+		std::cout << "Polygon collided with circle" << std::endl;
+		
+		//Implementation working
+		SetVelocity(GetVelocity() * -1);
+
+		//If you want to test the one below, comment out the one above and uncomment the one below
+
+		//Implementation not working
+		//Vector2 collisionNormal = SAT::GetCollisionNormalCirclePolygon(*circle, *this);
+		//SetVelocity(GetVelocity().reflect(collisionNormal));
+		//SetPosition(GetPosition() + collisionNormal * SAT::GetOverlapCirclePolygon(*circle, *this, collisionNormal));
 	}
 }
 

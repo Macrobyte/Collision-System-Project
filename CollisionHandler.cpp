@@ -24,19 +24,19 @@ void CollisionHandler::HandleCollisions()
     for (size_t i = 0; i < _collidables.size(); ++i) {
         for (size_t j = i + 1; j < _collidables.size(); ++j) {
             if (_collidables[i]->GetType() == POLYGON && _collidables[j]->GetType() == POLYGON) {
-                if (SAT::PolygonPolygonCollision(*dynamic_cast<IPolygonCollidable*>(_collidables[i]), *dynamic_cast<IPolygonCollidable*>(_collidables[j]))){
+                if (SAT::PolygonPolygonCollision(*static_cast<IPolygonCollidable*>(_collidables[i]), *static_cast<IPolygonCollidable*>(_collidables[j]))){
                     _collidables[i]->OnCollision(*_collidables[j]);
                     _collidables[j]->OnCollision(*_collidables[i]);
                 }
             }
             else if (_collidables[i]->GetType() == CIRCLE && _collidables[j]->GetType() == CIRCLE) {
-                if (SAT::CircleCircleCollision(*dynamic_cast<ICircleCollidable*>(_collidables[i]), *dynamic_cast<ICircleCollidable*>(_collidables[j]))) {
+                if (SAT::CircleCircleCollision(*static_cast<ICircleCollidable*>(_collidables[i]), *static_cast<ICircleCollidable*>(_collidables[j]))) {
                     _collidables[i]->OnCollision(*_collidables[j]);
                     _collidables[j]->OnCollision(*_collidables[i]);
                 }
             }
             else if (_collidables[i]->GetType() == POLYGON && _collidables[j]->GetType() == CIRCLE) {
-                if (SAT::PolygonCircleCollision(*dynamic_cast<IPolygonCollidable*>(_collidables[i]), *dynamic_cast<ICircleCollidable*>(_collidables[j]))) {
+                if (SAT::PolygonCircleCollision(*static_cast<IPolygonCollidable*>(_collidables[i]), *static_cast<ICircleCollidable*>(_collidables[j]))) {
                     _collidables[i]->OnCollision(*_collidables[j]);
                     _collidables[j]->OnCollision(*_collidables[i]);
                 }

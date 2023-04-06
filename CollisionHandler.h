@@ -5,7 +5,6 @@
 class CollisionHandler
 {
 public:
-
 	static void AddCollidable(ICollidable* collidable);
 	
 	static void HandleCollisions();

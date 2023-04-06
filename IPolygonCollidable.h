@@ -9,6 +9,5 @@ public:
 	virtual std::vector<Vector2> GetVertices() const = 0;
 
 	virtual std::vector<Vector2> GetNormals() const = 0;
-
 };
 

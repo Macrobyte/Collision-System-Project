@@ -1,0 +1,336 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML><HEAD></HEAD><BODY>
+<OBJECT type="text/site properties">
+<param name="FrameName" value="right">
+</OBJECT>
+<UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_collision_handler.html#a90451f64bba60d5f621cd8f794ee2fb9"><param name="Name" value="AddCollidable(ICollidable *collidable)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html#a9dddcf9a87dd1433caf32391ed342208"><param name="Name" value="AddShape(Shape *shape)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_circle.html"><param name="Name" value="Circle"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_circle.html"><param name="Name" value="Circle"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_circle.html#ad9a64ca5b295892aba4eb964b37e619b"><param name="Name" value="Draw(SDL_Renderer *renderer) override"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_circle.html"><param name="Name" value="Circle"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_circle.html#a95f5dde4520242a5b31da79cb0e7d8cd"><param name="Name" value="OnCollision(ICollidable &amp;other) override"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_circle.html"><param name="Name" value="Circle"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_circle.html#aeaf4740c9f0a674b5b2e69c4c87a69d3"><param name="Name" value="Update(float deltaTime) override"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#a4886aca7a18adab68091283be0381025"><param name="Name" value="CircleCircleCollision(ICircleCollidable &amp;circle1, ICircleCollidable &amp;circle2)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html#a4525743361888058d59e4acad0fb03e0"><param name="Name" value="Clean()"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_collision_handler.html"><param name="Name" value="CollisionHandler"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_collision_handler.html"><param name="Name" value="CollisionHandler"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_collision_handler.html#a90451f64bba60d5f621cd8f794ee2fb9"><param name="Name" value="AddCollidable(ICollidable *collidable)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_collision_handler.html"><param name="Name" value="CollisionHandler"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_collision_handler.html#a59af857b3b262ce0f0ad97c3a64734e6"><param name="Name" value="HandleCollisions()"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="md__r_e_a_d_m_e.html"><param name="Name" value="CollisionSystemProject"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#a59a0a9c163098e3e4e65b04dbadfd753"><param name="Name" value="CreateDecagon(float radius)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#a04bcd01fef3bf628f22ef22853fa3f2c"><param name="Name" value="CreateHeptagon(float radius)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#a99570cb2aba12fd35785034fda5ed038"><param name="Name" value="CreateHexagon(float radius)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#a86412bdb827ab11aa18575cba8c62e6e"><param name="Name" value="CreateMegagon(float radius)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#a1f4726649e3f8d7dbb31a2d5877aef95"><param name="Name" value="CreateNonagon(float radius)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#ae8a114bffdc886355b013dfd54f2940b"><param name="Name" value="CreateOctagon(float radius)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#a72b2e6530b7680a9388e821e21381f3c"><param name="Name" value="CreatePentagon(float radius)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#ab43b618e02e7c6a1325763d9815a3df6"><param name="Name" value="CreateRectangle(float width, float height)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#afd2bd293aa67ffbc91f97be423a66e74"><param name="Name" value="CreateSquare(float size)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#a3cb48a642507b485d88d748455090154"><param name="Name" value="CreateTriangle(float size)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_circle.html#ad9a64ca5b295892aba4eb964b37e619b"><param name="Name" value="Draw(SDL_Renderer *renderer) override"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_circle.html#ad9a64ca5b295892aba4eb964b37e619b"><param name="Name" value="Circle"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon.html#a525d02434c91a12c03f69db0d1fbfb57"><param name="Name" value="Draw(SDL_Renderer *renderer) override"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon.html#a525d02434c91a12c03f69db0d1fbfb57"><param name="Name" value="Polygon"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#abdf8a369786ea9c188f4d37fb3345023"><param name="Name" value="GetCollisionNormalCircle(const ICircleCollidable &amp;circle1, const ICircleCollidable &amp;circle2)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#a3f00635c2a2b00a6c82ee468d9d6f0e2"><param name="Name" value="GetCollisionNormalCirclePolygon(const ICircleCollidable &amp;circle, const IPolygonCollidable &amp;polygon)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#aedce60e73f8856a41f96b06853d21374"><param name="Name" value="GetCollisionNormalPolygon(const IPolygonCollidable &amp;polygon1, const IPolygonCollidable &amp;polygon2)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon.html#ab3b506ff80bbf9bb78b69c343a9a2900"><param name="Name" value="GetNormals() const override"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#a3084050f2f777e9e8e5f43126a923ea3"><param name="Name" value="GetOverlapCirclePolygon(const ICircleCollidable &amp;circle, const IPolygonCollidable &amp;polygon, const Vector2 &amp;axis)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#ac32a9de78e2294080e5af54899c49454"><param name="Name" value="GetOverlapPolygon(const IPolygonCollidable &amp;polygon1, const IPolygonCollidable &amp;polygon2, const Vector2 &amp;axis)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#a1eeb1d1e41fb6914e6cbd6e031263f9b"><param name="Name" value="GetUniqueAxes(const std::vector&lt; Vector2 &gt; &amp;vertices, std::vector&lt; Vector2 &gt; &amp;axes)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_collision_handler.html#a59af857b3b262ce0f0ad97c3a64734e6"><param name="Name" value="HandleCollisions()"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html#a3a7aaa9da46dc9f0cf1638e59edd00f1"><param name="Name" value="HandleEvents()"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_i_circle_collidable.html"><param name="Name" value="ICircleCollidable"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_i_collidable.html"><param name="Name" value="ICollidable"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_i_polygon_collidable.html"><param name="Name" value="IPolygonCollidable"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html#a820503214b3da0321f9c6fc64f49700c"><param name="Name" value="Initialize(const char *title, int x, int y, int width, int height, bool isFullscreen)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html#a92ce25f879b6dd7f8e41a8682b749934"><param name="Name" value="IsOutOfBounds(const Vector2 &amp;position, float radius)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_circle.html#a95f5dde4520242a5b31da79cb0e7d8cd"><param name="Name" value="OnCollision(ICollidable &amp;other) override"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_circle.html#a95f5dde4520242a5b31da79cb0e7d8cd"><param name="Name" value="Circle"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon.html#a8300d070ee201f4638829bf80ea81627"><param name="Name" value="OnCollision(ICollidable &amp;other) override"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon.html#a8300d070ee201f4638829bf80ea81627"><param name="Name" value="Polygon"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon.html"><param name="Name" value="Polygon"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon.html"><param name="Name" value="Polygon"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon.html#a525d02434c91a12c03f69db0d1fbfb57"><param name="Name" value="Draw(SDL_Renderer *renderer) override"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon.html"><param name="Name" value="Polygon"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon.html#ab3b506ff80bbf9bb78b69c343a9a2900"><param name="Name" value="GetNormals() const override"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon.html"><param name="Name" value="Polygon"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon.html#a8300d070ee201f4638829bf80ea81627"><param name="Name" value="OnCollision(ICollidable &amp;other) override"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon.html"><param name="Name" value="Polygon"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon.html#a5b289738fcdba9b7e92ba4e2ebc6266c"><param name="Name" value="Update(float deltaTime) override"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#a269c80cb179c30e0275d301341799342"><param name="Name" value="PolygonCircleCollision(IPolygonCollidable &amp;polygon, ICircleCollidable &amp;circle)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html"><param name="Name" value="PolygonFactory"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html"><param name="Name" value="PolygonFactory"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#a59a0a9c163098e3e4e65b04dbadfd753"><param name="Name" value="CreateDecagon(float radius)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html"><param name="Name" value="PolygonFactory"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#a04bcd01fef3bf628f22ef22853fa3f2c"><param name="Name" value="CreateHeptagon(float radius)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html"><param name="Name" value="PolygonFactory"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#a99570cb2aba12fd35785034fda5ed038"><param name="Name" value="CreateHexagon(float radius)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html"><param name="Name" value="PolygonFactory"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#a86412bdb827ab11aa18575cba8c62e6e"><param name="Name" value="CreateMegagon(float radius)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html"><param name="Name" value="PolygonFactory"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#a1f4726649e3f8d7dbb31a2d5877aef95"><param name="Name" value="CreateNonagon(float radius)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html"><param name="Name" value="PolygonFactory"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#ae8a114bffdc886355b013dfd54f2940b"><param name="Name" value="CreateOctagon(float radius)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html"><param name="Name" value="PolygonFactory"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#a72b2e6530b7680a9388e821e21381f3c"><param name="Name" value="CreatePentagon(float radius)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html"><param name="Name" value="PolygonFactory"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#ab43b618e02e7c6a1325763d9815a3df6"><param name="Name" value="CreateRectangle(float width, float height)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html"><param name="Name" value="PolygonFactory"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#afd2bd293aa67ffbc91f97be423a66e74"><param name="Name" value="CreateSquare(float size)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html"><param name="Name" value="PolygonFactory"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon_factory.html#a3cb48a642507b485d88d748455090154"><param name="Name" value="CreateTriangle(float size)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#a23fccc2a6f48c849faf8bd5fcbba0140"><param name="Name" value="PolygonPolygonCollision(IPolygonCollidable &amp;polygon1, IPolygonCollidable &amp;polygon2)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#ac78280c2e8749bb7fdf17e95e3c44086"><param name="Name" value="ProjectOntoAxis(const Vector2 &amp;axis, const std::vector&lt; Vector2 &gt; &amp;vertices, float &amp;min, float &amp;max)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_r_g_b.html"><param name="Name" value="RGB"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html#ab48811aa29976de24728c8457ed4eb1b"><param name="Name" value="Render()"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html"><param name="Name" value="SAT"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html"><param name="Name" value="SAT"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#a4886aca7a18adab68091283be0381025"><param name="Name" value="CircleCircleCollision(ICircleCollidable &amp;circle1, ICircleCollidable &amp;circle2)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html"><param name="Name" value="SAT"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#abdf8a369786ea9c188f4d37fb3345023"><param name="Name" value="GetCollisionNormalCircle(const ICircleCollidable &amp;circle1, const ICircleCollidable &amp;circle2)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html"><param name="Name" value="SAT"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#a3f00635c2a2b00a6c82ee468d9d6f0e2"><param name="Name" value="GetCollisionNormalCirclePolygon(const ICircleCollidable &amp;circle, const IPolygonCollidable &amp;polygon)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html"><param name="Name" value="SAT"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#aedce60e73f8856a41f96b06853d21374"><param name="Name" value="GetCollisionNormalPolygon(const IPolygonCollidable &amp;polygon1, const IPolygonCollidable &amp;polygon2)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html"><param name="Name" value="SAT"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#a3084050f2f777e9e8e5f43126a923ea3"><param name="Name" value="GetOverlapCirclePolygon(const ICircleCollidable &amp;circle, const IPolygonCollidable &amp;polygon, const Vector2 &amp;axis)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html"><param name="Name" value="SAT"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#ac32a9de78e2294080e5af54899c49454"><param name="Name" value="GetOverlapPolygon(const IPolygonCollidable &amp;polygon1, const IPolygonCollidable &amp;polygon2, const Vector2 &amp;axis)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html"><param name="Name" value="SAT"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#a1eeb1d1e41fb6914e6cbd6e031263f9b"><param name="Name" value="GetUniqueAxes(const std::vector&lt; Vector2 &gt; &amp;vertices, std::vector&lt; Vector2 &gt; &amp;axes)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html"><param name="Name" value="SAT"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#a269c80cb179c30e0275d301341799342"><param name="Name" value="PolygonCircleCollision(IPolygonCollidable &amp;polygon, ICircleCollidable &amp;circle)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html"><param name="Name" value="SAT"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#a23fccc2a6f48c849faf8bd5fcbba0140"><param name="Name" value="PolygonPolygonCollision(IPolygonCollidable &amp;polygon1, IPolygonCollidable &amp;polygon2)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html"><param name="Name" value="SAT"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_s_a_t.html#ac78280c2e8749bb7fdf17e95e3c44086"><param name="Name" value="ProjectOntoAxis(const Vector2 &amp;axis, const std::vector&lt; Vector2 &gt; &amp;vertices, float &amp;min, float &amp;max)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_shape.html"><param name="Name" value="Shape"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_time.html"><param name="Name" value="Time"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_circle.html#aeaf4740c9f0a674b5b2e69c4c87a69d3"><param name="Name" value="Update(float deltaTime) override"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_circle.html#aeaf4740c9f0a674b5b2e69c4c87a69d3"><param name="Name" value="Circle"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon.html#a5b289738fcdba9b7e92ba4e2ebc6266c"><param name="Name" value="Update(float deltaTime) override"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_polygon.html#a5b289738fcdba9b7e92ba4e2ebc6266c"><param name="Name" value="Polygon"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html#af44c489631be6e2f29ee2d52858b0c57"><param name="Name" value="Update(float deltaTime)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a00199e4898e615bc72e08a6a92e1b872"><param name="Name" value="distance(const Vector2 &amp;other) const"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#ae83579993d72c55163977b13dcfc60b6"><param name="Name" value="dot(const Vector2 &amp;a, const Vector2 &amp;b)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#ab84b0c3d31e2893df551d259789e80a9"><param name="Name" value="magnitude() const"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#aa19eae04633be7499153c3fdfc2758fd"><param name="Name" value="magnitude_squared() const"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#abf921b268aff0012ec9b435fc35ad66a"><param name="Name" value="normalize()"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a1e0be0f2d578e8b5d0b8f95a9f8b6626"><param name="Name" value="normalized() const"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#af3b049c981a79bd60495b6362aa6392b"><param name="Name" value="operator!=(const Vector2 &amp;other) const"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a8c2a411b3b3e351dfff5a57d149183ec"><param name="Name" value="operator*(const Vector2 &amp;other) const"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a4521d3d308937f671745d967366a13ec"><param name="Name" value="operator*(float scalar) const"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a90c9456f9c414462ed044d87f4f7e425"><param name="Name" value="operator*(float scalar, const Vector2 &amp;vector)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#ab2b6204c86379424c696efc6df4ab42d"><param name="Name" value="operator*=(float scalar)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a53bdaa4ea8e1504f8a78ac78e6f151bf"><param name="Name" value="operator+(const Vector2 &amp;other) const"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a3f0a06af9940c1dcc492f3011de58a7e"><param name="Name" value="operator+(float scalar) const"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a6d5415b321ad6ee4ec9021704b511ad0"><param name="Name" value="operator+=(const Vector2 &amp;other)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a66c2a54ca378d0d665bbb1115b2576f7"><param name="Name" value="operator-() const"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a9f6650ee1529209532c14fc0e4e97a6a"><param name="Name" value="operator-(const Vector2 &amp;other) const"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a61de61782c7dc2f41c3936178700183c"><param name="Name" value="operator-=(const Vector2 &amp;other)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a518848b9baa08e0ae7179fe835f7ade1"><param name="Name" value="operator/(float scalar) const"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a01442d7b2e42a5889bec668cc992f2a0"><param name="Name" value="operator/=(float scalar)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a65bfdabef06de26b9ad8fd599cac6a02"><param name="Name" value="operator&lt;&lt;(std::ostream &amp;os, const Vector2 &amp;vector)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a75c903883dd1c8c6e39f83b3c0f1c6ab"><param name="Name" value="operator==(const Vector2 &amp;other) const"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#acfed578929880d6025a98f3e4a155aa7"><param name="Name" value="perp() const"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html"><param name="Name" value="Vector2"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a92b3a72a0706b923fef3775d8a587355"><param name="Name" value="reflect(const Vector2 &amp;normal) const"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html"><param name="Name" value="Visualizer"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html"><param name="Name" value="Visualizer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html#a9dddcf9a87dd1433caf32391ed342208"><param name="Name" value="AddShape(Shape *shape)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html"><param name="Name" value="Visualizer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html#a4525743361888058d59e4acad0fb03e0"><param name="Name" value="Clean()"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html"><param name="Name" value="Visualizer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html#a3a7aaa9da46dc9f0cf1638e59edd00f1"><param name="Name" value="HandleEvents()"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html"><param name="Name" value="Visualizer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html#a820503214b3da0321f9c6fc64f49700c"><param name="Name" value="Initialize(const char *title, int x, int y, int width, int height, bool isFullscreen)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html"><param name="Name" value="Visualizer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html#a92ce25f879b6dd7f8e41a8682b749934"><param name="Name" value="IsOutOfBounds(const Vector2 &amp;position, float radius)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html"><param name="Name" value="Visualizer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html#ab48811aa29976de24728c8457ed4eb1b"><param name="Name" value="Render()"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html"><param name="Name" value="Visualizer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="class_visualizer.html#af44c489631be6e2f29ee2d52858b0c57"><param name="Name" value="Update(float deltaTime)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a00199e4898e615bc72e08a6a92e1b872"><param name="Name" value="distance(const Vector2 &amp;other) const"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#ae83579993d72c55163977b13dcfc60b6"><param name="Name" value="dot(const Vector2 &amp;a, const Vector2 &amp;b)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#ab84b0c3d31e2893df551d259789e80a9"><param name="Name" value="magnitude() const"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#aa19eae04633be7499153c3fdfc2758fd"><param name="Name" value="magnitude_squared() const"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#abf921b268aff0012ec9b435fc35ad66a"><param name="Name" value="normalize()"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a1e0be0f2d578e8b5d0b8f95a9f8b6626"><param name="Name" value="normalized() const"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#af3b049c981a79bd60495b6362aa6392b"><param name="Name" value="operator!=(const Vector2 &amp;other) const"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a8c2a411b3b3e351dfff5a57d149183ec"><param name="Name" value="operator*(const Vector2 &amp;other) const"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a4521d3d308937f671745d967366a13ec"><param name="Name" value="operator*(float scalar) const"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a90c9456f9c414462ed044d87f4f7e425"><param name="Name" value="operator*(float scalar, const Vector2 &amp;vector)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#ab2b6204c86379424c696efc6df4ab42d"><param name="Name" value="operator*=(float scalar)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a53bdaa4ea8e1504f8a78ac78e6f151bf"><param name="Name" value="operator+(const Vector2 &amp;other) const"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a3f0a06af9940c1dcc492f3011de58a7e"><param name="Name" value="operator+(float scalar) const"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a6d5415b321ad6ee4ec9021704b511ad0"><param name="Name" value="operator+=(const Vector2 &amp;other)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a66c2a54ca378d0d665bbb1115b2576f7"><param name="Name" value="operator-() const"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a9f6650ee1529209532c14fc0e4e97a6a"><param name="Name" value="operator-(const Vector2 &amp;other) const"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a61de61782c7dc2f41c3936178700183c"><param name="Name" value="operator-=(const Vector2 &amp;other)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a518848b9baa08e0ae7179fe835f7ade1"><param name="Name" value="operator/(float scalar) const"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a01442d7b2e42a5889bec668cc992f2a0"><param name="Name" value="operator/=(float scalar)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a65bfdabef06de26b9ad8fd599cac6a02"><param name="Name" value="operator&lt;&lt;(std::ostream &amp;os, const Vector2 &amp;vector)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a75c903883dd1c8c6e39f83b3c0f1c6ab"><param name="Name" value="operator==(const Vector2 &amp;other) const"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#acfed578929880d6025a98f3e4a155aa7"><param name="Name" value="perp() const"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_vector2.html#a92b3a72a0706b923fef3775d8a587355"><param name="Name" value="reflect(const Vector2 &amp;normal) const"></OBJECT>
+</UL>
+</BODY>
+</HTML>

@@ -44,21 +44,29 @@ void Circle::Draw(SDL_Renderer* renderer)
 /// <param name="deltaTime"></param>
 void Circle::Update(float deltaTime)
 {
-	// TEMPORARY WAY OF DOING THIS
-	if (Visualizer::IsOutOfBounds(GetPosition(), GetRadius()))
-	{
-		if (GetPosition().x - GetRadius() < 0 || GetPosition().x + GetRadius() > Visualizer::GetWidth())
-		{
-			SetVelocity(GetVelocity().reflect(Vector2::Right()));
-		}
-		else
-		{
-			SetVelocity(GetVelocity().reflect(Vector2::Down()));
-		}
-	}
-	// TEMPORARY WAY OF DOING THIS
 	
 	Vector2 newPosition = GetPosition() + GetVelocity() * deltaTime;
+
+	// Check if the circle has gone beyond the left or right edges of the screen
+	if (newPosition.x < -GetRadius())
+	{
+		newPosition.x = Visualizer::GetWidth() + GetRadius();
+	}
+	else if (newPosition.x > Visualizer::GetWidth() + GetRadius())
+	{
+		newPosition.x = -GetRadius();
+	}
+
+	// Check if the circle has gone beyond the top or bottom edges of the screen
+	if (newPosition.y < -GetRadius())
+	{
+		newPosition.y = Visualizer::GetHeight() + GetRadius();
+	}
+	else if (newPosition.y > Visualizer::GetHeight() + GetRadius())
+	{
+		newPosition.y = -GetRadius();
+	}
+
 	SetPosition(newPosition);
 }
 
@@ -70,29 +78,28 @@ void Circle::OnCollision(ICollidable& other)
 {
 	if (const IPolygonCollidable* polygon = dynamic_cast<const IPolygonCollidable*>(&other))
 	{
-		std::cout << "Circle collided with polygon" << std::endl;
+		//std::cout << "Circle collided with polygon" << std::endl;
 		
-		//Implementation working
-		SetVelocity(GetVelocity() * -1);
+		Vector2 collisionNormal = SAT::GetCollisionNormalCirclePolygon(*this, *polygon);
 
-		//If you want to test the one below, comment out the one above and uncomment the one below
+		float overlap = SAT::GetOverlapCirclePolygon(*this, *polygon, collisionNormal);
 
-		//Implementation not working
-		//Vector2 collisionNormal = SAT::GetCollisionNormalCirclePolygon(*this, *polygon);
-		//SetVelocity(GetVelocity().reflect(collisionNormal));	
-		//SetPosition(GetPosition() + collisionNormal);
+		SetPosition(GetPosition() + collisionNormal * overlap + 0.1f);
+
+		SetVelocity(GetVelocity().reflect(collisionNormal));
 		
 	}
 	else if (const ICircleCollidable* circle = dynamic_cast<const ICircleCollidable*>(&other))
 	{
-		std::cout << "Circle collided with circle" << std::endl;
+		//std::cout << "Circle collided with circle" << std::endl;
+
 		Vector2 collisionNormal = (GetPosition() - circle->GetPosition()).normalize();
 
-		SetVelocity(GetVelocity().reflect(collisionNormal));
-
 		float overlap = (GetRadius() + circle->GetRadius()) - (GetPosition() - circle->GetPosition()).magnitude();
+
 		SetPosition(GetPosition() + collisionNormal * overlap);
 
+		SetVelocity(GetVelocity().reflect(collisionNormal));
 	}
 }
 

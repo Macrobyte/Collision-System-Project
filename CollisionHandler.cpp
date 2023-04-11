@@ -41,6 +41,12 @@ void CollisionHandler::HandleCollisions()
                     _collidables[j]->OnCollision(*_collidables[i]);
                 }
             }
+            else if (_collidables[i]->GetType() == CIRCLE && _collidables[j]->GetType() == POLYGON) {
+                if (SAT::PolygonCircleCollision(*static_cast<IPolygonCollidable*>(_collidables[j]), *static_cast<ICircleCollidable*>(_collidables[i]))) {
+					_collidables[i]->OnCollision(*_collidables[j]);
+					_collidables[j]->OnCollision(*_collidables[i]);
+				}
+            }
         }
     }
 }

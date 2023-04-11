@@ -27,33 +27,31 @@ void Polygon::Update(float deltaTime)
 {
 	UpdateVertices();
 
-	// TEMPORARY WAY OF DOING THIS
-	const std::vector<Vector2>& vertices = GetVertices();
-	Vector2 center = GetPosition();
-	float radius = 0.0f;
-	for (const Vector2& vertex : vertices)
-	{
-		float distance = (vertex - center).magnitude();
-		if (distance > radius)
-		{
-			radius = distance;
-		}
-	}
-
-	if (Visualizer::IsOutOfBounds(GetPosition(), radius))
-	{
-		if (GetPosition().x - radius < 0 || GetPosition().x + radius > Visualizer::GetWidth())
-		{
-			SetVelocity(GetVelocity().reflect(Vector2::Right()));
-		}
-		else
-		{
-			SetVelocity(GetVelocity().reflect(Vector2::Down()));
-		}
-	}
-	// TEMPORARY WAY OF DOING THIS
-
 	Vector2 newPosition = GetPosition() + GetVelocity() * deltaTime;
+
+	float left = 0.0f;
+	float right = Visualizer::GetWidth();
+	float top = 0.0f;
+	float bottom = Visualizer::GetHeight();
+
+	if (newPosition.x < left)
+	{
+		newPosition.x = right;
+	}
+	else if (newPosition.x > right)
+	{
+		newPosition.x = left;
+	}
+
+	if (newPosition.y < top)
+	{
+		newPosition.y = bottom;
+	}
+	else if (newPosition.y > bottom)
+	{
+		newPosition.y = top;
+	}
+
 	SetPosition(newPosition);
 }
 
@@ -102,26 +100,30 @@ void Polygon::OnCollision(ICollidable& other)
 {
 	if (const IPolygonCollidable* polygon = dynamic_cast<const IPolygonCollidable*>(&other))
 	{
-		std::cout << "Polygon collided with polygon" << std::endl;
+		//std::cout << "Polygon collided with polygon" << std::endl;
+
 		Vector2 collisionNormal = SAT::GetCollisionNormalPolygon(*this, *polygon);
 
-		SetVelocity(GetVelocity().reflect(collisionNormal));
-		
 		SetPosition(GetPosition() + collisionNormal);
+		
+		SetVelocity(GetVelocity().reflect(collisionNormal));
 	}
 	else if (const ICircleCollidable* circle = dynamic_cast<const ICircleCollidable*>(&other))
 	{
-		std::cout << "Polygon collided with circle" << std::endl;
+		//std::cout << "Polygon collided with circle" << std::endl;
+	
+		Vector2 collisionNormal = SAT::GetCollisionNormalCirclePolygon(*circle, *this);
+
+		float overlap = SAT::GetOverlapCirclePolygon(*circle, *this, collisionNormal);
+
+		Vector2 separationVector = collisionNormal * overlap;
 		
-		//Implementation working
-		SetVelocity(GetVelocity() * -1);
+		SetPosition(GetPosition() + separationVector + 0.1f);
 
-		//If you want to test the one below, comment out the one above and uncomment the one below
+		SetVelocity(GetVelocity().reflect(collisionNormal));
 
-		//Implementation not working
-		//Vector2 collisionNormal = SAT::GetCollisionNormalCirclePolygon(*circle, *this);
-		//SetVelocity(GetVelocity().reflect(collisionNormal));
-		//SetPosition(GetPosition() + collisionNormal * SAT::GetOverlapCirclePolygon(*circle, *this, collisionNormal));
+
+		//complete this
 	}
 }
 

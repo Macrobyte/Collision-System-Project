@@ -56,8 +56,8 @@ void TestPolyCircleCollision(float speed)
 {
 	Circle* circle = new Circle(Vector2(100, 100), speed, 50, RGB(255, 100, 100), "Circle 1", Vector2(1, 0));
 	
-	std::vector<Vector2> pentagon = PolygonFactory::CreateRectangle(50, 100);
-	Polygon* poly = new Polygon(Vector2(350, 100), speed, RGB(156, 200, 100), "Poly 1", Vector2(-1, 0), pentagon);
+	std::vector<Vector2> pentagon = PolygonFactory::CreatePentagon(50);
+	Polygon* poly = new Polygon(Vector2(350, 150), speed, RGB(156, 200, 100), "Poly 1", Vector2(-1, 0), pentagon);
 
 	Visualizer::AddShape(poly);
 	Visualizer::AddShape(circle);
@@ -69,9 +69,9 @@ void TestPolyCircleCollision(float speed)
 
 int main(int argc, char* argv[])
 {
-	//TestPolygonCollision(200);
-	//TestCircleCollision(200);
-	TestPolyCircleCollision(200);
+	TestPolygonCollision(150);
+	TestCircleCollision(150);
+	//TestPolyCircleCollision(200);
 
 	if (Visualizer::Initialize("Collision System Demo", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, false))
 	{

@@ -6,7 +6,7 @@
 /// </summary>
 /// <param name="polygon1"></param>
 /// <param name="polygon2"></param>
-/// <returns></returns>
+/// <returns>True or False depending on if the polygons collided</returns>
 bool SAT::PolygonPolygonCollision(IPolygonCollidable& polygon1, IPolygonCollidable& polygon2)
 {
     std::vector<Vector2> axes;
@@ -207,52 +207,22 @@ Vector2 SAT::GetCollisionNormalCircle(const ICircleCollidable& circle1, const IC
 /// <returns></returns>
 Vector2 SAT::GetCollisionNormalCirclePolygon(const ICircleCollidable& circle, const IPolygonCollidable& polygon)
 {
-    const std::vector<Vector2>& polygonVertices = polygon.GetVertices();
     Vector2 circlePosition = circle.GetPosition();
-    float circleRadius = circle.GetRadius();
+    std::vector<Vector2> polygonVertices = polygon.GetVertices();
 
-    std::vector<Vector2> axes;
-    axes.reserve(polygonVertices.size() + 1);
-
-    // Get all the unique axes
-    GetUniqueAxes(polygonVertices, axes);
-
-    // Add the axis perpendicular to the circle's center to the circle's center-to-vertex axes
-    Vector2 centerToCircle = circlePosition - polygon.GetPosition();
-    axes.push_back(centerToCircle);
+    // Calculate the closest vertex of the polygon to the circle
+    float minDistance = FLT_MAX;
+    Vector2 closestVertex;
     for (const auto& vertex : polygonVertices) {
-        axes.push_back(Perpendicular(centerToCircle, vertex - polygon.GetPosition()));
-    }
-
-    // Project the vertices and the circle's center onto each axis and check for overlap
-    float minOverlap = std::numeric_limits<float>::max();
-    Vector2 collisionNormal;
-    for (const auto& axis : axes)
-    {
-        // Project the vertices and the circle's center onto the axis
-        float circleProjection = DotProduct(circlePosition, axis);
-        float min1 = circleProjection - circleRadius;
-        float max1 = circleProjection + circleRadius;
-        float min2, max2;
-        ProjectOntoAxis(axis, polygonVertices, min2, max2);
-
-        // Check for overlap
-        if (max1 < min2 || max2 < min1) {
-            return Vector2::Zero();  // No collision
-        }
-
-        // Calculate overlap
-        float overlap = std::min(max1, max2) - std::max(min1, min2);
-        if (overlap < minOverlap) {
-            minOverlap = overlap;
-            collisionNormal = axis;
+        float distance = (vertex - circlePosition).magnitude();
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestVertex = vertex;
         }
     }
 
-    // If the circle's center is inside the polygon, return the projection onto the axis perpendicular to the collision normal
-    if (minOverlap == 0 && DotProduct(centerToCircle, collisionNormal) > 0) {
-        collisionNormal = Perpendicular(collisionNormal, centerToCircle);
-    }
+    // Calculate the collision normal from the circle's center to the closest vertex
+    Vector2 collisionNormal = (circlePosition - closestVertex).normalize();
 
     return collisionNormal;
 }
@@ -304,29 +274,37 @@ float SAT::GetOverlapPolygon(const IPolygonCollidable& polygon1, const IPolygonC
 /// <returns></returns>
 float SAT::GetOverlapCirclePolygon(const ICircleCollidable& circle, const IPolygonCollidable& polygon, const Vector2& axis)
 {
-    // Project the vertices of the polygon and the center of the circle onto the axis
-    float circleProjection = DotProduct(circle.GetPosition(), axis);
-    float minVertexProjection = std::numeric_limits<float>::max();
-    float maxVertexProjection = std::numeric_limits<float>::lowest();
+    float circleRadius = circle.GetRadius();
+    Vector2 circlePosition = circle.GetPosition();
+    std::vector<Vector2> polygonVertices = polygon.GetVertices();
 
-    std::vector<Vector2> vertices = polygon.GetVertices();
-    for (const auto& vertex : vertices) {
-        float vertexProjection = DotProduct(vertex, axis);
-        minVertexProjection = std::min(minVertexProjection, vertexProjection);
-        maxVertexProjection = std::max(maxVertexProjection, vertexProjection);
+    // Ensure that the polygon has at least three vertices
+    if (polygonVertices.size() < 3) {
+        return 0.0f;
     }
 
-    // Calculate the overlap between the circle and polygon projections
+    // Project the circle's center and vertices onto the axis
+    float circleProjection = DotProduct(circlePosition, axis);
+    float min1 = circleProjection - circleRadius;
+    float max1 = circleProjection + circleRadius;
+    float min2, max2;
+    ProjectOntoAxis(axis, polygonVertices, min2, max2);
+
+    // Calculate the overlap between the two projections
     float overlap = 0.0f;
-
-    if (circleProjection + circle.GetRadius() < minVertexProjection || circleProjection - circle.GetRadius() > maxVertexProjection) {
-        // The projections do not overlap
-        overlap = 0.0f;
-    }
+    if (max1 < min2 || max2 < min1) {
+		// The projections do not overlap
+		overlap = 0.0f;
+	}
     else {
-        // The projections overlap, so calculate the overlap amount
-        overlap = std::min(circleProjection + circle.GetRadius() - minVertexProjection, maxVertexProjection - circleProjection - circle.GetRadius());
-    }
+		// The projections overlap, so calculate the overlap amount
+        if (min1 < min2) {
+			overlap = max1 - min2;
+		}
+        else {
+			overlap = max2 - min1;
+		}
+	}
 
     return overlap;
 }
